@@ -3,12 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - OnMouse
+  - Canvas
+  - Badge
+  - Connection
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Category
   - Water
   - UI
   - 
