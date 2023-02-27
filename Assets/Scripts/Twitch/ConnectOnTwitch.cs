@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.IO;
 using System.Net.Sockets;
 using TMPro;
@@ -48,7 +48,6 @@ public class ConnectOnTwitch : MonoBehaviour
     private float _timeToReconnect = 5.0f;
     private float _realTime = 0;
     private bool _tryReconnect;
-    //private bool _pingTrigger;
 
     private TwitchInfo _twitchInfo;
     private void TwitchTryConnect(bool noTakeMessage)
@@ -109,7 +108,6 @@ public class ConnectOnTwitch : MonoBehaviour
         Reader = new StreamReader(Twitch.GetStream());
         Writer = new StreamWriter(Twitch.GetStream());
 
-        //conexão da twitch
         Writer.WriteLine("PASS " + OAuth);
         Writer.WriteLine("NICK " + User);
         Writer.WriteLine("USER " + User + " 8 *:" + User);
@@ -227,8 +225,6 @@ public class ConnectOnTwitch : MonoBehaviour
 
         if (PingCounter >= 20.0f && Twitch.Available == 0)
         {
-            //_pingTrigger = true;
-            //TwitchReconnect();
 
             Writer.WriteLine("PING" + URL);
             Writer.Flush();
@@ -243,6 +239,7 @@ public class ConnectOnTwitch : MonoBehaviour
         if (Twitch.Available > 0)
         {
             var messageRead = Reader.ReadLine();
+            messageRead = messageRead.Replace("\U000e0000", "");
 
             if (messageRead.Contains("PRIVMSG"))
             {
@@ -258,7 +255,6 @@ public class ConnectOnTwitch : MonoBehaviour
                     TwitchStatusVariable = TwitchStatus.Connected;
                     _twitchMessager._messagerStatus = MessagerStatus.Connected;
                 }
-
                 TwitchTagsEvent?.Invoke(messageRead);
             }
 
