@@ -11,6 +11,9 @@ public class GameRun : MonoBehaviour
     public GameManager GameManager;
     public RankInfo RankInfo;
 
+    public PhraseInDictionary PhraseInDictionary;
+    public CaractereRemove CaractereRemove;
+
     [Serializable]
     public struct DataInGame
     {
@@ -28,6 +31,7 @@ public class GameRun : MonoBehaviour
         GameChancesEventHandler?.Invoke(DataGame.Chances);
     }
 
+    private string _lowerPhrase;
 
     private string UpdateCensuredPhrase(string user, string message, bool tipsOneChar)
     {
@@ -35,13 +39,13 @@ public class GameRun : MonoBehaviour
         var lettersTaked = 0;
         if (tipsOneChar)
         {
-            var charMessage = char.Parse(message);
+            var charMessage = char.Parse(message.ToLower());
 
             for (var i = 0; i <= DataGame.Phrase.Length - 1; i++)
             {
-                if (DataGame.Phrase[i] == charMessage)
+                if ($"{DataGame.Phrase[i].ToString().ToLower()}" == $"{charMessage}" || _lowerPhrase == $"{charMessage}")
                 {
-                    output += $"{charMessage}";
+                    output += $"{DataGame.Phrase[i]}";
                     lettersTaked++;
                 }
                 else
@@ -52,11 +56,14 @@ public class GameRun : MonoBehaviour
         }
         else
         {
+            if (!PhraseInDictionary.ExistInDictionary(message))
+                return DataGame.PhraseCensured;
+
             for (var i = 0; i <= DataGame.Phrase.Length - 1; i++)
             {
-                if (message[i] == DataGame.Phrase[i])
+                if ($"{message[i].ToString().ToLower()}" == $"{DataGame.Phrase[i].ToString().ToLower()}" || message[i] == _lowerPhrase[i])
                 {
-                    output += $"{message[i]}";
+                    output += $"{DataGame.Phrase[i]}";
                     lettersTaked++;
                 }
                 else
@@ -83,8 +90,9 @@ public class GameRun : MonoBehaviour
         if (GameManager.Data.State == GameManager.GameState.Playing)
         {
             var wrongPhrase = false;
+            _lowerPhrase = CaractereRemove.RemoveDiacritics(DataGame.Phrase.ToLower());
 
-            if (message == DataGame.Phrase)
+            if (message == DataGame.Phrase.ToLower() || message == _lowerPhrase)
             {
                 if (RankInfo.UserExist(user))
                 {
@@ -94,11 +102,9 @@ public class GameRun : MonoBehaviour
                 {
                     RankInfo.AddAUser(user, PlayerSniperPhrase());
                 }
-
                 DataGame.PhraseCensured = DataGame.Phrase;
             }
-
-            if (message != DataGame.Phrase)
+            else
             {
                 wrongPhrase = true;
             }

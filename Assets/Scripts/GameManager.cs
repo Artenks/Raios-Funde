@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public string TakeTogetherPhrase()
     {
         ReceiveAPhraseEventHandler?.Invoke();
-        return PhraseFromDictionary.Phrase.ToLower();
+        return PhraseFromDictionary.Phrase;
     }
 
     private void ConfigurateGame()

@@ -20,7 +20,6 @@ public class UpdatePlayerDictionary : MonoBehaviour
     public GameManager GameManager;
 
     private string _pathUserDictionary;
-
     private void Awake()
     {
         _pathUserDictionary = Application.persistentDataPath + "/PlayerDictionary.json";
@@ -60,7 +59,19 @@ public class UpdatePlayerDictionary : MonoBehaviour
                 var randomPhraseRank = Random.Range(1, content.Length - 1);
                 if (content[randomPhraseRank].Length == 5 && ListDictionary.totalPhrase < 10)
                 {
-                    ListDictionary.phraseList.Add(content[randomPhraseRank]);
+                    var phrase = content[randomPhraseRank];
+                    var rightPhrase = "";
+                    for (int i = 0; i <= phrase.Length - 1; i++)
+                    {
+                        if (i == 0)
+                        {
+                            rightPhrase += phrase[i].ToString().ToUpper();
+                            continue;
+                        }
+                        rightPhrase += phrase[i];
+                    }
+
+                    ListDictionary.phraseList.Add(rightPhrase);
                     ListDictionary.totalPhrase = ListDictionary.phraseList.Count;
                 }
             }
