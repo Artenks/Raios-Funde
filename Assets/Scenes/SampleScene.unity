@@ -3253,7 +3253,7 @@ MonoBehaviour:
   ListDictionary:
     totalPhrase: 0
     phraseList: []
-  Dictionary: {fileID: 4900000, guid: 9c0c7fd03a58497428edff820b7224b1, type: 3}
+  Dictionary: {fileID: 4900000, guid: 879b1c0a95dcfa3478f2829b70d56f79, type: 3}
   GameManager: {fileID: 984122554}
 --- !u!114 &366621254
 MonoBehaviour:
@@ -11843,6 +11843,7 @@ GameObject:
   - component: {fileID: 984122552}
   - component: {fileID: 984122554}
   - component: {fileID: 984122553}
+  - component: {fileID: 984122555}
   m_Layer: 0
   m_Name: PlayMode
   m_TagString: Untagged
@@ -11917,6 +11918,20 @@ MonoBehaviour:
     TimerOn: 0
     TipsOn: 0
     ChancesOn: 0
+--- !u!114 &984122555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984122549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ffc2c972795ce498bf087ac74538dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dictionary: {fileID: 4900000, guid: 9c0c7fd03a58497428edff820b7224b1, type: 3}
+  DictionarySpecialCharacter: {fileID: 4900000, guid: 879b1c0a95dcfa3478f2829b70d56f79, type: 3}
 --- !u!1 &998296947
 GameObject:
   m_ObjectHideFlags: 0
@@ -22294,6 +22309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 984122554}
   RankInfo: {fileID: 1654138535}
+  PhraseInDictionary: {fileID: 984122555}
   DataGame:
     Phrase: 
     PhraseCensured: 
