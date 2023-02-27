@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2705215ac5b84b70bacc50632be6e391, type: 3}
   m_Name: TMP Settings
   m_EditorClassIdentifier: 
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 1
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b6167696c6b72616d6b6d6b6d
   m_enableExtraPadding: 1
   m_enableTintAllSprites: 0
   m_enableParseEscapeCharacters: 1
   m_EnableRaycastTarget: 0
   m_GetFontFeaturesAtRuntime: 1
   m_missingGlyphCharacter: 0
+  m_ClearDynamicDataOnBuild: 1
   m_warningsDisabled: 1
   m_defaultFontAsset: {fileID: 11400000, guid: 8a9030123e81b1a47aaae261678e69b2, type: 2}
   m_defaultFontAssetPath: Fonts & Materials/
@@ -36,10 +38,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfebb7cc47f70b14996a9ee5c34bf2fa, type: 2}
   - {fileID: 11400000, guid: 2c2afcdaca194d842b4de4a49988f6dc, type: 2}
   m_matchMaterialPreset: 1
-  m_defaultSpriteAsset: {fileID: 11400000, guid: c41005c129ba4d66911b75229fd70b45, type: 2}
+  m_HideSubTextObjects: 1
+  m_defaultSpriteAsset: {fileID: 11400000, guid: f9f88e50951d5744a9b6532970a87804, type: 2}
   m_defaultSpriteAssetPath: Sprite Assets/
   m_enableEmojiSupport: 1
   m_MissingCharacterSpriteUnicode: 0
+  m_EmojiFallbackTextAssets:
+  - {fileID: 11400000, guid: 2b0ef3d4712346f45915cc6f53c56769, type: 2}
+  - {fileID: 11400000, guid: 192dc0deebee6894fa0c67f9b4920a20, type: 2}
+  - {fileID: 11400000, guid: 4030fb4dda3bba546bd8bd1008ba1f9c, type: 2}
   m_defaultColorGradientPresetsPath: Color Gradient Presets/
   m_defaultStyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_StyleSheetsResourcePath: 
