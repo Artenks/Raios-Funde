@@ -122,7 +122,7 @@ public class GameRun : MonoBehaviour
                     }
                 }
 
-                if (DataGame.Phrase.Length == message.Length)
+                if (DataGame.Phrase.Length == message.Length || message.Length == 1)
                 {
                     if (DataGame.Tips > 0 && wrongPhrase)
                     {
