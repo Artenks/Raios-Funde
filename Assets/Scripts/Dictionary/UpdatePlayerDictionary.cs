@@ -51,7 +51,7 @@ public class UpdatePlayerDictionary : MonoBehaviour
 
     private void UpdateDictionary()
     {
-        if (ListDictionary.totalPhrase < 10)
+        if (ListDictionary.totalPhrase < 5)
         {
             var content = Dictionary.text.Split();
             do
@@ -88,6 +88,8 @@ public class UpdatePlayerDictionary : MonoBehaviour
         RemoveFromUserDictionary(phrase);
 
         PhraseFromDictionary?.Invoke(phrase);
+
+        UpdateDictionary();
     }
 
     public void RemoveFromUserDictionary(string phrase)

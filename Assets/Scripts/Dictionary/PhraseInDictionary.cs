@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PhraseInDictionary : MonoBehaviour
 {
-    public TextAsset Dictionary;
+    //public TextAsset Dictionary;
     public TextAsset DictionarySpecialCharacter;
     public bool ExistInDictionary(string phrase)
     {
-        var allPhrases = Dictionary.text.ToLower().Split();
+        var allPhrases = DictionarySpecialCharacter.text.ToLower().Split();
         foreach (var item in allPhrases)
         {
             if (item.Length != phrase.Length)
