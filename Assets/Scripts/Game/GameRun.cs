@@ -122,20 +122,24 @@ public class GameRun : MonoBehaviour
                     }
                 }
 
-                if (DataGame.Tips > 0 && wrongPhrase)
+                if (DataGame.Phrase.Length == message.Length || message.Length == 1)
                 {
-                    DataGame.Tips--;
+                    if (DataGame.Tips > 0 && wrongPhrase)
+                    {
+                        DataGame.Tips--;
+                    }
+
+                    if (oldTips != DataGame.Tips)
+                    {
+                        GameTipsEventHandler?.Invoke(DataGame.Tips);
+                    }
+
+                    if (DataGame.Tips <= 0)
+                    {
+                        Debug.Log("Sem mais dicas");
+                    }
                 }
 
-                if (oldTips != DataGame.Tips)
-                {
-                    GameTipsEventHandler?.Invoke(DataGame.Tips);
-                }
-
-                if (DataGame.Tips <= 0)
-                {
-                    Debug.Log("Sem mais dicas");
-                }
             }
 
             if (GameManager.Modes.ChancesOn)
