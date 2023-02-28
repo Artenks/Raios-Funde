@@ -73,6 +73,16 @@ public class ConnectTwitchMessager : MonoBehaviour
         MessagerTryConnect();
     }
 
+    //para ChatMessage
+    public void SendAMessage(string messageSend)
+    {
+        if (User != null)
+        {
+            Writer.WriteLine($"PRIVMSG #{User} : {messageSend}");
+            Writer.Flush();
+        }
+    }
+
     private void ReconnectInTime()
     {
         if (_realTime >= _timeToReconnect)

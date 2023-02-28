@@ -36,7 +36,7 @@ public class TwitchChat : MonoBehaviour
 
     private void ClearChat()
     {
-        if (chatList.Count >= 10)
+        if (chatList.Count >= 8)
         {
             Destroy(chatList[0]);
             chatList.RemoveAt(0);
