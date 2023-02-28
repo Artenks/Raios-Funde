@@ -41,6 +41,8 @@ public class TwitchTags : MonoBehaviour
         if (badgeInfo == "")
             return;
 
+        Tags = new TagsData();
+
         Tags.Badges = TakeATag(badgeInfo, "badges=");
         if (Tags.Badges.Contains("bot"))
             return;

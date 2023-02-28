@@ -13,9 +13,7 @@ public class ConnectionView : MonoBehaviour
     {
         _connectionIconText = GetComponent<TMP_Text>();
 
-        //limitação futura de if
         ConnectOnTwitch_ConnectionEventHandler(false);
-
         ConnectOnTwitch.ConnectionHandler += ConnectOnTwitch_ConnectionEventHandler;
     }
 
@@ -30,7 +28,6 @@ public class ConnectionView : MonoBehaviour
             _connectionIconText.color = new Color32(255, 214, 0, 255);
 
             _chatText.color = new Color32(255, 214, 0, 255);
-
         }
         else
         {

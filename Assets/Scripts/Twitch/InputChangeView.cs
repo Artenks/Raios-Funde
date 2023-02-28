@@ -3,11 +3,11 @@ using UnityEngine;
 public class InputChangeView : MonoBehaviour
 {
     public ConnectOnTwitch ConnectOnTwitch;
-    public TwitchChat TwitchChat;
+    private TwitchChat _twitchChat;
     void Start()
     {
         ConnectOnTwitch = GameObject.FindObjectOfType<ConnectOnTwitch>();
-        TwitchChat = FindObjectOfType<TwitchChat>();
+        _twitchChat = FindObjectOfType<TwitchChat>();
 
         ConnectOnTwitch.InputChangeHandler += _connectOnTwitch_InputChangeEventHandler;
     }
@@ -15,9 +15,9 @@ public class InputChangeView : MonoBehaviour
     private void _connectOnTwitch_InputChangeEventHandler(bool parametersChanged)
     {
         if (parametersChanged)
-            TwitchChat.OnChatMessage(".", "Lacuna atualizada.");
+            _twitchChat.OnChatMessage(".", "Lacuna atualizada.");
         else
-            TwitchChat.OnChatMessage(".", "Informação recarregada.");
+            _twitchChat.OnChatMessage(".", "Informação recarregada.");
 
     }
 }

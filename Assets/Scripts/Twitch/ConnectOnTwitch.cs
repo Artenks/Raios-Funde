@@ -45,22 +45,19 @@ public class ConnectOnTwitch : MonoBehaviour
 
     private float PingCounter;
 
-    private float _timeToReconnect = 5.0f;
+    private float _timeToReconnect = 1.0f;
     private float _realTime = 0;
-    private bool _tryReconnect;
 
     private TwitchInfo _twitchInfo;
+
     private void TwitchTryConnect(bool noTakeMessage)
     {
         TwitchStatusVariable = TwitchStatus.TryConnect;
-        StartConnectTwitch();
+        StartImediateTwitch();
         _twitchMessager.TakeAMessage(User, OAuth, noTakeMessage);
-
     }
     private void TwitchReconnect()
     {
-        TwitchDisconnect();
-
         TwitchTryConnect(true);
     }
     private void TwitchDisconnect()
@@ -68,6 +65,7 @@ public class ConnectOnTwitch : MonoBehaviour
         TwitchStatusVariable = TwitchStatus.Disconnected;
         ConnectionHandler?.Invoke(false);
 
+        _twitchMessager.MessagerDisconnect();
         if (Twitch != null)
         {
             Twitch.Close();
@@ -78,20 +76,14 @@ public class ConnectOnTwitch : MonoBehaviour
             Reader = null;
             Writer = null;
         }
-
-        _twitchMessager.MessagerDisconnect();
-
     }
 
     private void ReconnectInTime()
     {
-
         if (_realTime >= _timeToReconnect)
         {
             Debug.Log("Reconectando");
             TwitchReconnect();
-            _realTime = 0;
-            _tryReconnect = false;
         }
         else
         {
@@ -99,11 +91,8 @@ public class ConnectOnTwitch : MonoBehaviour
         }
     }
 
-    private void StartConnectTwitch()
+    private void StartImediateTwitch()
     {
-        if (TwitchStatusVariable == TwitchStatus.Connected)
-            return;
-
         Twitch = new TcpClient(URL, PORT);
         Reader = new StreamReader(Twitch.GetStream());
         Writer = new StreamWriter(Twitch.GetStream());
@@ -138,9 +127,7 @@ public class ConnectOnTwitch : MonoBehaviour
 
         if (User != null && OAuth != null)
         {
-            TwitchDisconnect();
-            TwitchTryConnect(false);
-            _tryReconnect = true;
+            TwitchReconnect();
         }
         else
         {
@@ -163,14 +150,12 @@ public class ConnectOnTwitch : MonoBehaviour
         }
         ResetChatEventHandler?.Invoke();
 
-
         OAuth = msgNoSpace;
 
         if (User != null && OAuth != null)
         {
-            TwitchDisconnect();
-            TwitchTryConnect(false);
-            _tryReconnect = true;
+            TwitchReconnect();
+
         }
         else
         {
@@ -183,8 +168,7 @@ public class ConnectOnTwitch : MonoBehaviour
         _twitchMessager = GetComponent<ConnectTwitchMessager>();
         _twitchInfo = GameObject.Find("LoadTwitch").GetComponent<TwitchInfo>();
 
-        TwitchDisconnect();
-        _twitchMessager.MessagerDisconnect();
+        TwitchReconnect();
     }
 
     private void Start()
@@ -204,7 +188,7 @@ public class ConnectOnTwitch : MonoBehaviour
         Channel = User;
         OAuth = _emptyToNull.RemoveSpace(_twitchInfo.ContentJson.oauth);
 
-        if (User != null && OAuth != null)
+        if (User != null || OAuth != null)
         {
             UserInput.text = User;
             OAuthInput.text = OAuth;
@@ -216,16 +200,20 @@ public class ConnectOnTwitch : MonoBehaviour
     private void Update()
     {
         if (Twitch == null || !Twitch.Connected)
-            return;
-
-        if (_tryReconnect && TwitchStatusVariable == TwitchStatus.TryConnect)
         {
-            ReconnectInTime();
+            if (User != null && OAuth != null)
+            {
+                PingCounter = 0;
+                ReconnectInTime();
+
+                ConnectionHandler?.Invoke(false);
+                Debug.Log("off.Null");
+            }
+            return;
         }
 
-        if (PingCounter >= 20.0f && Twitch.Available == 0)
+        if (PingCounter >= 5.0f && Twitch.Available == 0)
         {
-
             Writer.WriteLine("PING" + URL);
             Writer.Flush();
 
@@ -247,9 +235,6 @@ public class ConnectOnTwitch : MonoBehaviour
                 {
                     ConnectionHandler?.Invoke(true);
 
-                    _tryReconnect = false;
-                    _realTime = 0;
-
                     _twitchMessager.MessageRead = "OK";
 
                     TwitchStatusVariable = TwitchStatus.Connected;
@@ -257,18 +242,17 @@ public class ConnectOnTwitch : MonoBehaviour
                 }
                 TwitchTagsEvent?.Invoke(messageRead);
             }
-
         }
+
 
         if (_twitchMessager.MessageRead.Contains("CHECK") && TwitchStatusVariable == TwitchStatus.TryConnect)
         {
+            _realTime = 0;
+
             TwitchStatusVariable = TwitchStatus.Connected;
             _twitchMessager._messagerStatus = MessagerStatus.Connected;
 
             ConnectionHandler?.Invoke(true);
-
-            _tryReconnect = false;
-            _realTime = 0;
 
             _twitchMessager.MessageRead = "OK";
         }

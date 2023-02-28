@@ -35,5 +35,4 @@ public class TimeForUpdate : MonoBehaviour
             return false;
         }
     }
-
 }

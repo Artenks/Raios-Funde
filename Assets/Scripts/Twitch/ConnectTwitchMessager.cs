@@ -18,6 +18,7 @@ public class ConnectTwitchMessager : MonoBehaviour
 
     public string MessageRead;
 
+
     private TcpClient Twitch;
     private StreamReader Reader;
     private StreamWriter Writer;
@@ -31,10 +32,19 @@ public class ConnectTwitchMessager : MonoBehaviour
 
     private bool _messageGo = false;
 
+    private float PingCounter;
+
+    private float _timeToReconnect = 1.0f;
+    private float _realTime = 0;
+
     public void MessagerTryConnect()
     {
         _messagerStatus = MessagerStatus.TryConnect;
-        StartConnectTwitch();
+        StartImediateMessager();
+    }
+    private void TwitchReconnect()
+    {
+        StartImediateMessager();
     }
     public void MessagerDisconnect()
     {
@@ -62,16 +72,25 @@ public class ConnectTwitchMessager : MonoBehaviour
 
         MessagerTryConnect();
     }
-    private void StartConnectTwitch()
-    {
-        if (_messagerStatus == MessagerStatus.Connected)
-            return;
 
+    private void ReconnectInTime()
+    {
+        if (_realTime >= _timeToReconnect)
+        {
+            TwitchReconnect();
+        }
+        else
+        {
+            _realTime += Time.deltaTime;
+        }
+    }
+
+    private void StartImediateMessager()
+    {
         Twitch = new TcpClient(URL, PORT);
         Reader = new StreamReader(Twitch.GetStream());
         Writer = new StreamWriter(Twitch.GetStream());
 
-        //conexão da twitch
         Writer.WriteLine("PASS " + OAuth);
         Writer.WriteLine("NICK " + User);
         Writer.WriteLine("USER " + User + " 8 *:" + User);
@@ -79,7 +98,6 @@ public class ConnectTwitchMessager : MonoBehaviour
         Writer.WriteLine("PING" + URL);
         Writer.Flush();
     }
-
     private void WriteToChannel(string channelName, string messageSend)
     {
         if (!_messageGo)
@@ -99,7 +117,26 @@ public class ConnectTwitchMessager : MonoBehaviour
     private void Update()
     {
         if (Twitch == null || !Twitch.Connected)
+        {
+            if (User != null && OAuth != null)
+            {
+                PingCounter = 0;
+                ReconnectInTime();
+            }
             return;
+        }
+
+        if (PingCounter >= 5.0f && Twitch.Available == 0)
+        {
+            Writer.WriteLine("PING" + URL);
+            Writer.Flush();
+
+            PingCounter = 0;
+        }
+        else
+        {
+            PingCounter += Time.deltaTime;
+        }
 
         if (Twitch.Available > 0)
         {
