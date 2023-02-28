@@ -166,7 +166,7 @@ public class ConnectOnTwitch : MonoBehaviour
     private void Awake()
     {
         _twitchMessager = GetComponent<ConnectTwitchMessager>();
-        _twitchInfo = GameObject.Find("LoadTwitch").GetComponent<TwitchInfo>();
+        _twitchInfo = GameObject.Find("Load").GetComponent<TwitchInfo>();
 
         TwitchReconnect();
     }
