@@ -18,15 +18,15 @@ public class TogetherGame : MonoBehaviour
 
     public void Together_GameModesUpdate()
     {
-        if (GameRunning.DataGame.Phrase == "")
+        if (GameRunning.DataGame.Phrase == "" && GameManager.Data.PlayMode == GameManager.PlayModes.SimpleMode)
         {
             GameRunning.DataGame.Phrase = GameManager.TakeTogetherPhrase();
+        }
 
-            GameRunning.DataGame.PhraseCensured = "";
-            for (var i = GameRunning.DataGame.Phrase.Length - 1; i >= 0; i--)
-            {
-                GameRunning.DataGame.PhraseCensured += "_";
-            }
+        GameRunning.DataGame.PhraseCensured = "";
+        for (var i = GameRunning.DataGame.Phrase.Length - 1; i >= 0; i--)
+        {
+            GameRunning.DataGame.PhraseCensured += "_";
         }
 
         GameRunning.DataGame.Tips = GameManager.Data.Tips;
@@ -62,7 +62,7 @@ public class TogetherGame : MonoBehaviour
 
     private void OnEnable()
     {
-        GameRunning.DataGame.Phrase = "";
+        //GameRunning.DataGame.Phrase = "";
         DisableEventHandler?.Invoke();
     }
 }

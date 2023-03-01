@@ -133,11 +133,6 @@ public class GameRun : MonoBehaviour
                     {
                         GameTipsEventHandler?.Invoke(DataGame.Tips);
                     }
-
-                    if (DataGame.Tips <= 0)
-                    {
-                        Debug.Log("Sem mais dicas");
-                    }
                 }
 
             }
@@ -157,10 +152,6 @@ public class GameRun : MonoBehaviour
                         GameChancesEventHandler?.Invoke(DataGame.Chances);
                     }
 
-                    if (DataGame.Chances == 0)
-                    {
-                        Debug.Log("Sem mais chances");
-                    }
                     else if (DataGame.Chances < 0)
                     {
                         GameEndedEventHandler?.Invoke(false);

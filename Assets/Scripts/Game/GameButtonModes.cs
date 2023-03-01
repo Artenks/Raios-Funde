@@ -9,7 +9,7 @@ public class GameButtonModes : MonoBehaviour
     {
         None,
         CreateMode,
-        TogetherMode
+        SimpleMode
     }
     public ModesStatus Modes;
 
@@ -17,7 +17,7 @@ public class GameButtonModes : MonoBehaviour
     {
         GameRun.DataGame.Phrase = "";
 
-        if (Modes == ModesStatus.TogetherMode)
+        if (Modes == ModesStatus.SimpleMode)
             GameManager.Data.PlayMode = GameManager.PlayModes.SimpleMode;
 
         if (Modes == ModesStatus.CreateMode)
