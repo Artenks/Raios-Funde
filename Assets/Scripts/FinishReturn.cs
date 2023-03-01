@@ -13,6 +13,7 @@ public class FinishReturn : MonoBehaviour
         {
             Game.SetActive(true);
             CreatePhrase.SetActive(false);
+
         }
         else
         {
