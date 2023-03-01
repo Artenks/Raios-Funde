@@ -9,7 +9,7 @@ public class FinishReturn : MonoBehaviour
 
     public void OnClickReturn()
     {
-        if (GameManager.Data.PlayMode == GameManager.PlayModes.TogetherMode)
+        if (GameManager.Data.PlayMode == GameManager.PlayModes.SimpleMode)
         {
             Game.SetActive(true);
             CreatePhrase.SetActive(false);

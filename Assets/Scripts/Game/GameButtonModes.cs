@@ -18,7 +18,7 @@ public class GameButtonModes : MonoBehaviour
         GameRun.DataGame.Phrase = "";
 
         if (Modes == ModesStatus.TogetherMode)
-            GameManager.Data.PlayMode = GameManager.PlayModes.TogetherMode;
+            GameManager.Data.PlayMode = GameManager.PlayModes.SimpleMode;
 
         if (Modes == ModesStatus.CreateMode)
             GameManager.Data.PlayMode = GameManager.PlayModes.CreateMode;

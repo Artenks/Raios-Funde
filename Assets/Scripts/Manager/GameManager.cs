@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public event Action<bool> GameScoreEventHandler;
     public event Action ReceiveAPhraseEventHandler;
     public event Action<bool, bool, bool> GameModesEventHandler;
     public event Action<float> TimerEventHandler;
@@ -17,6 +18,12 @@ public class GameManager : MonoBehaviour
 
     public PhraseFromDictionary PhraseFromDictionary;
 
+    public enum PlayModes
+    {
+        None,
+        SimpleMode,
+        CreateMode
+    }
     [Serializable]
     public enum GameState
     {
@@ -25,12 +32,14 @@ public class GameManager : MonoBehaviour
         Playing,
         Win,
         Lost,
+        End,
         Restart,
     }
     [Serializable]
     public struct GameData
     {
         public GameState State;
+        public PlayModes PlayMode;
         public float Timer;
         public int Tips;
         public int Chances;
@@ -140,9 +149,17 @@ public class GameManager : MonoBehaviour
 
             case GameState.Lost:
             case GameState.Win:
+
+                if (Data.State == GameState.Win)
+                    GameScoreEventHandler?.Invoke(true);
+                else
+                    GameScoreEventHandler?.Invoke(false);
+
                 TogetherBox.SetActive(false);
                 CreateBox.SetActive(false);
                 FinishBox.SetActive(true);
+
+                Data.State = GameState.End;
                 break;
         }
     }
