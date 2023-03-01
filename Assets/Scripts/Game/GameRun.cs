@@ -33,6 +33,19 @@ public class GameRun : MonoBehaviour
 
     private string _lowerPhrase;
 
+    private bool LastWords()
+    {
+        var lastWord = 0;
+        for (var i = 0; i <= DataGame.PhraseCensured.Length - 1; i++)
+        {
+            if (DataGame.PhraseCensured[i] == '_')
+            {
+                lastWord++;
+            }
+        }
+        return lastWord <= 2 ? true : false;
+    }
+
     private string UpdateCensuredPhrase(string user, string message, bool tipsOneChar)
     {
         var output = "";
@@ -109,7 +122,7 @@ public class GameRun : MonoBehaviour
                 wrongPhrase = true;
             }
 
-            if (GameManager.Modes.TipsOn)
+            if (GameManager.Modes.TipsOn && !LastWords())
             {
                 var oldTips = DataGame.Tips;
 
@@ -152,7 +165,7 @@ public class GameRun : MonoBehaviour
                         GameChancesEventHandler?.Invoke(DataGame.Chances);
                     }
 
-                    else if (DataGame.Chances < 0)
+                    if (DataGame.Chances < 0)
                     {
                         GameEndedEventHandler?.Invoke(false);
                         GameManager.Data.State = GameManager.GameState.Lost;
