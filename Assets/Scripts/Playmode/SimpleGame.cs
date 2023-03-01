@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class TogetherGame : MonoBehaviour
+public class SimpleGame : MonoBehaviour
 {
     public event Action DisableEventHandler;
 
@@ -62,7 +62,6 @@ public class TogetherGame : MonoBehaviour
 
     private void OnEnable()
     {
-        //GameRunning.DataGame.Phrase = "";
         DisableEventHandler?.Invoke();
     }
 }
