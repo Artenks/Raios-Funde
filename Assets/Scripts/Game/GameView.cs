@@ -12,6 +12,8 @@ public class GameView : MonoBehaviour
 
     public TMP_Text PhraseText;
 
+    public TimerConvert TimerConvert;
+
     void Awake()
     {
         GameRun.GamePhraseEventHanndler += GameRun_GamePhraseEventHanndler;
@@ -31,14 +33,7 @@ public class GameView : MonoBehaviour
 
     private void GameManager_TimerEventHandler(float timer)
     {
-        if (timer >= 100)
-        {
-            TimerText.text = $"{timer.ToString("00:00")}";
-        }
-        else
-        {
-            TimerText.text = $"{timer.ToString("0.00")}";
-        }
+        TimerText.text = TimerConvert.TimerConverted(timer);
     }
 
     private void Start()

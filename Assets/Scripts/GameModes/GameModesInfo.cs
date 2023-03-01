@@ -34,6 +34,9 @@ public class GameModesInfo : MonoBehaviour
 
     private void Save()
     {
+        if (Info.Timer > 60)
+            Info.Timer = Info.Timer - 40;
+
         var contentList = JsonUtility.ToJson(Info, true);
 
         File.WriteAllText(_path, contentList);
@@ -52,6 +55,9 @@ public class GameModesInfo : MonoBehaviour
         }
 
         var content = JsonUtility.FromJson<GameModeInfo>(contentPath);
+
+        if (content.Timer > 60)
+            Info.Timer = content.Timer - 40;
 
         Info.Timer = content.Timer;
         Info.TimerID = content.TimerID;

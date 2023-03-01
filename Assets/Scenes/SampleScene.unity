@@ -14196,6 +14196,7 @@ GameObject:
   - component: {fileID: 1078065491}
   - component: {fileID: 1078065495}
   - component: {fileID: 1078065496}
+  - component: {fileID: 1078065497}
   m_Layer: 0
   m_Name: ConfigManager
   m_TagString: Untagged
@@ -14308,6 +14309,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d648595c30bc9f64595475817b7ea124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1078065497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078065490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f5d86be903f6e4e82423d85584915e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data:
+    Minutes: 0
+    Seconds: 0
 --- !u!1 &1085549827
 GameObject:
   m_ObjectHideFlags: 0
@@ -24281,6 +24297,7 @@ MonoBehaviour:
   ChancesText: {fileID: 664494003}
   TimerText: {fileID: 393597315}
   PhraseText: {fileID: 519471892}
+  TimerConvert: {fileID: 1078065497}
 --- !u!1 &1778039901
 GameObject:
   m_ObjectHideFlags: 0
