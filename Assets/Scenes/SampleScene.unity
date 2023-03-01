@@ -3529,7 +3529,7 @@ MonoBehaviour:
     totalPhrase: 0
     phraseList: []
     blockedWords: []
-  Dictionary: {fileID: 4900000, guid: 879b1c0a95dcfa3478f2829b70d56f79, type: 3}
+  Dictionary: {fileID: 4900000, guid: 5ef85f2ac6bdfee48afa8d8e453df66c, type: 3}
   GameManager: {fileID: 984122554}
 --- !u!114 &366621255
 MonoBehaviour:
