@@ -69,7 +69,7 @@ public class GameRun : MonoBehaviour
         }
         else
         {
-            if (!PhraseInDictionary.ExistInDictionary(message))
+            if (!PhraseInDictionary.ExistInDictionary(message) && GameManager.Data.PlayMode == GameManager.PlayModes.SimpleMode)
                 return DataGame.PhraseCensured;
 
             for (var i = 0; i <= DataGame.Phrase.Length - 1; i++)
@@ -186,7 +186,6 @@ public class GameRun : MonoBehaviour
                 score += 1;
             }
         }
-
         return score;
     }
     private void PlayerSniperLetter(string user, int score)
