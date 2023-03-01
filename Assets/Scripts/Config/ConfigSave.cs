@@ -7,6 +7,7 @@ public class ConfigSave : MonoBehaviour
 {
     public TMP_Text ConsoleDebug;
 
+    public TwitchDictionary TwitchDictionary;
     public ResolutionScript ResolutionScript;
     public MusicManager MusicManager;
     public GameOnFirstExecute GameOnFirstExecute;
@@ -17,6 +18,7 @@ public class ConfigSave : MonoBehaviour
     public struct ConfigInfo
     {
         public bool noIsFirstTime;
+        public bool twitchSDictionary;
 
         [Serializable]
         public struct Screen
@@ -54,9 +56,16 @@ public class ConfigSave : MonoBehaviour
             file.Close();
         }
 
+        TwitchDictionary.TwitchDictionaryStatusEventHandler += TwitchDictionary_TwitchDictionaryStatusEventHandler;
         ResolutionScript.ResolutionEventHandler += ResolutionScript_ResolutionEventHandler;
         MusicManager.MusicEventHandler += MusicManager_MusicEventHandler;
         GameOnFirstExecute.FirstTimeEventHandler += GameOnFirstExecute_FirstTimeEventHandler;
+    }
+
+    private void TwitchDictionary_TwitchDictionaryStatusEventHandler(bool status)
+    {
+        Info.twitchSDictionary = status;
+        Save();
     }
 
     private void GameOnFirstExecute_FirstTimeEventHandler()
@@ -102,6 +111,8 @@ public class ConfigSave : MonoBehaviour
         var content = JsonUtility.FromJson<ConfigInfo>(contentPath);
 
         Info.noIsFirstTime = content.noIsFirstTime;
+        Info.twitchSDictionary = content.twitchSDictionary;
+
         Info.screen.noIsFullscreen = content.screen.noIsFullscreen;
         Info.screen.frameRate = content.screen.frameRate;
         Info.screen.width = content.screen.width;
@@ -116,6 +127,8 @@ public class ConfigSave : MonoBehaviour
 
     private void UpdateSecondaryInfo()
     {
+        TwitchDictionary.TwitchToggle.isOn = Info.twitchSDictionary;
+
         ResolutionScript.Info.isFullscreen = !Info.screen.noIsFullscreen;
         ResolutionScript.Info.frameRate = Info.screen.frameRate;
         ResolutionScript.Info.width = Info.screen.width;

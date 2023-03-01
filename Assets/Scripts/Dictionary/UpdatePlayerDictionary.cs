@@ -17,6 +17,7 @@ public class UpdatePlayerDictionary : MonoBehaviour
     }
     public AllPhrases ListDictionary;
     public TextAsset Dictionary;
+    public TextAsset TwitchDictionary;
     public GameManager GameManager;
 
     private string _pathUserDictionary;
