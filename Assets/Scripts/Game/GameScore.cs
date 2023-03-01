@@ -6,6 +6,7 @@ public class GameScore : MonoBehaviour
 {
     public GameManager GameManager;
     public event Action<int, int> UpdateScoreEventHandler;
+    [Serializable]
     public struct ScoreData
     {
         public int Combo;
@@ -31,6 +32,7 @@ public class GameScore : MonoBehaviour
         }
         Load();
 
+        UpdateScoreEventHandler?.Invoke(Score.Combo, Score.Record);
         GameManager.GameScoreEventHandler += GameManager_GameScoreEventHandler;
     }
 

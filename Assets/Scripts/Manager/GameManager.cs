@@ -151,7 +151,9 @@ public class GameManager : MonoBehaviour
             case GameState.Win:
 
                 if (Data.State == GameState.Win)
+                {
                     GameScoreEventHandler?.Invoke(true);
+                }
                 else
                     GameScoreEventHandler?.Invoke(false);
 
