@@ -14,10 +14,11 @@ public class UpdatePlayerDictionary : MonoBehaviour
     {
         public int totalPhrase;
         public List<string> phraseList;
+        public List<string> blockedWords;
+
     }
     public AllPhrases ListDictionary;
     public TextAsset Dictionary;
-    public TextAsset TwitchDictionary;
     public GameManager GameManager;
 
     private string _pathUserDictionary;
@@ -50,20 +51,42 @@ public class UpdatePlayerDictionary : MonoBehaviour
         UpdateDictionary();
     }
 
-    private void UpdateDictionary()
+    public void UpdateDictionary()
     {
         if (ListDictionary.totalPhrase < 5)
         {
             var content = Dictionary.text.Split();
+
+            if (ListDictionary.blockedWords.Count >= content.Length)
+            {
+                ListDictionary.blockedWords.Clear();
+            }
+
             do
             {
-                var randomPhraseRank = Random.Range(1, content.Length - 1);
+                var randomPhraseRank = Random.Range(0, content.Length);
                 if (content[randomPhraseRank].Length == 5 && ListDictionary.totalPhrase < 10)
                 {
+                    bool continueLoop = true;
                     var phrase = content[randomPhraseRank];
                     var rightPhrase = "";
+
+                    for (int i = 0; i <= ListDictionary.blockedWords.Count - 1; i++)
+                    {
+                        if (ListDictionary.blockedWords[i] == phrase)
+                        {
+                            Debug.Log("Essa palavra já foi vista");
+                            continueLoop = false;
+                            break;
+                        }
+                    }
+
+                    if (!continueLoop)
+                        continue;
+
                     for (int i = 0; i <= phrase.Length - 1; i++)
                     {
+
                         if (i == 0)
                         {
                             rightPhrase += phrase[i].ToString().ToUpper();
@@ -73,11 +96,11 @@ public class UpdatePlayerDictionary : MonoBehaviour
                     }
 
                     ListDictionary.phraseList.Add(rightPhrase);
+                    ListDictionary.blockedWords.Add(phrase);
                     ListDictionary.totalPhrase = ListDictionary.phraseList.Count;
                 }
             }
             while (ListDictionary.totalPhrase < 10);
-
             Save();
         }
     }
@@ -123,6 +146,7 @@ public class UpdatePlayerDictionary : MonoBehaviour
 
         ListDictionary.totalPhrase = content.totalPhrase;
         ListDictionary.phraseList = content.phraseList;
+        ListDictionary.blockedWords = content.blockedWords;
     }
 
 }
