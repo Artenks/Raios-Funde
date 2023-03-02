@@ -1,8 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class GameScoreView : MonoBehaviour
 {
+    public event Action<int, int> StreakScoreEventHandler;
+
     public TMP_Text ScoreCombo;
     public TMP_Text ScoreRecord;
 
@@ -32,6 +35,8 @@ public class GameScoreView : MonoBehaviour
         }
         else
             ScoreRecord.gameObject.SetActive(false);
+
+        StreakScoreEventHandler?.Invoke(combo, record);
     }
 
 }
