@@ -55,7 +55,7 @@ public class UpdatePlayerDictionary : MonoBehaviour
     {
         if (ListDictionary.totalPhrase < 5)
         {
-            var content = Dictionary.text.Split();
+            var content = Dictionary.text.Split(" ");
 
             if (ListDictionary.blockedWords.Count >= content.Length)
             {

@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class PhraseInDictionary : MonoBehaviour
 {
-    public TextAsset DictionarySpecialCharacter;
-    public bool ExistInDictionary(string phrase)
+    public TextAsset CheckDictionary;
+    public bool ExistInDictionary(string word)
     {
-        var allPhrases = DictionarySpecialCharacter.text.ToLower().Split();
-        foreach (var item in allPhrases)
+        if (CaractereRemove.RemoveDiacritics(CheckDictionary.text).ToLower().Contains(word.ToLower()))
         {
-            if (item.Length != phrase.Length)
-                continue;
-
-            if (item.ToLower() == phrase)
-                return true;
+            Debug.Log("existe");
+            return true;
         }
+        Debug.Log("nao existe");
         return false;
+
+        //var allPhrases = CheckDictionary.text.ToLower().Split(", ");
+        //foreach (var item in allPhrases)
+        //{
+        //    if (item.Length != phrase.Length)
+        //        continue;
+
+        //    if (item.ToLower() == phrase)
+        //        return true;
+        //}
+        //return false;
     }
 }

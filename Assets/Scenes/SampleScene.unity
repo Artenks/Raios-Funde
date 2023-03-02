@@ -3549,7 +3549,7 @@ MonoBehaviour:
     totalPhrase: 0
     phraseList: []
     blockedWords: []
-  Dictionary: {fileID: 4900000, guid: 5ef85f2ac6bdfee48afa8d8e453df66c, type: 3}
+  Dictionary: {fileID: 4900000, guid: 4ba09b0045ef07c4a8a34a5fa2aec841, type: 3}
   GameManager: {fileID: 984122554}
 --- !u!114 &366621255
 MonoBehaviour:
@@ -9821,7 +9821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ffc2c972795ce498bf087ac74538dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionarySpecialCharacter: {fileID: 4900000, guid: 5ef85f2ac6bdfee48afa8d8e453df66c, type: 3}
+  CheckDictionary: {fileID: 4900000, guid: 67603c86b40999c4db8c0d3d8ff7cffb, type: 3}
 --- !u!1 &791950658
 GameObject:
   m_ObjectHideFlags: 0

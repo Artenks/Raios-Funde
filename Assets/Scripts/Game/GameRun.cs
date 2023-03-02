@@ -73,7 +73,7 @@ public class GameRun : MonoBehaviour
         }
         else
         {
-            if (!PhraseInDictionary.ExistInDictionary(message) && GameManager.Data.PlayMode == GameManager.PlayModes.SimpleMode)
+            if (!PhraseInDictionary.ExistInDictionary(message) /*&& GameManager.Data.PlayMode == GameManager.PlayModes.SimpleMode*/)
                 return DataGame.PhraseCensured;
 
             for (var i = 0; i <= DataGame.Phrase.Length - 1; i++)
