@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public event Action<bool> GameScoreEventHandler;
+
     public event Action ReceiveAPhraseEventHandler;
     public event Action<bool, bool, bool> GameModesEventHandler;
     public event Action<float> TimerEventHandler;
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
 
         VerifyModesOn();
     }
+
 
     private void ResetCounter()
     {
