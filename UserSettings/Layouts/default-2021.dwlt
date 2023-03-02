@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 62500
+  controlID: 1667
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 62477
+  controlID: 1725
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,8 +193,8 @@ MonoBehaviour:
     y: 468
     width: 879
     height: 582
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 62506
+  controlID: 1672
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -271,8 +271,8 @@ MonoBehaviour:
     y: 584
     width: 374
     height: 466
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -371,9 +371,9 @@ MonoBehaviour:
   m_RenderIMGUI: 1
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
-  m_VSyncEnabled: 1
+  m_VSyncEnabled: 0
   m_Gizmos: 0
-  m_Stats: 0
+  m_Stats: 1
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
@@ -670,9 +670,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 295.18933, y: 188.17203, z: 13.820007}
+    m_Target: {x: 395.06793, y: 223.74602, z: 12.594513}
     speed: 2
-    m_Value: {x: 295.18933, y: 188.17203, z: 13.820007}
+    m_Value: {x: 395.06793, y: 223.74602, z: 12.594513}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -723,9 +723,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 321.86633
+    m_Target: 304.01556
     speed: 2
-    m_Value: 321.86633
+    m_Value: 304.01556
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -895,7 +895,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 461762
+  m_LastSelectedObjectID: 25046
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -926,24 +926,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 226}
-      m_SelectedIDs: c20b0700
-      m_LastClickedID: 461762
-      m_ExpandedIDs: d217fcff5c2afcffcc2bfcffd02dfcffd898fcffde98fcff289ffcffd6a0fcffbea2fcff0ca4fcff38aafcffb635fdff2238fdff6e60fdff105efeff1e9fffff5ee9ffff2afbffff96600000a0600000a6600000b4600000b8600000fa600000006100000c61000016610000326100007c61000096610000fa6100004c6200008062000094620000ae620000c4620000286300003463000048640000e2640000ee6400005c65000084650000a0650000b06600000a6700006a670000a0670000046800000e680000286800003e680000f09c0200cc9d0200e89d0200fc9d0200889e0200b69e0200e49f0200a6a00200eaa0020002a102003ea1020098a1020034a20200bea2020026a30200bca30200c6a90500e8aa05009cac050046b9050074b9050096ba0500f0bb05004abc05005ec005007ac005001ac1050048c1050076c2050038c30500d0c305002ac40500c6c40500b8c505004ec60500c4020700e60307009a050700aa090700c6090700660a0700940a0700c20b0700840c0700c80c07001c0d0700760d0700120e07009c0e0700d20e0700040f0700080f07009a0f0700
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 229f0100
+      m_LastClickedID: 106274
+      m_ExpandedIDs: 8691ffffd491ffff8293ffffee94ffff3c95ffff2298fffffab3ffff48b4ffff2eb7ffff22cdffff70cdffff1ecfffffb0d0fffffcd0ffffaad2ffff10d4ffff5cd4ffff68d7ffff22fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: CreateMode
-        m_OriginalName: CreateMode
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 461254
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -1022,36 +1022,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Manager
+    - Assets/Scripts/Dictionary
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Manager
+  - Assets/Scripts/Dictionary
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\arten\Documents\dev\unity\local\Raios Funde Projeto\Raios-Funde
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: aa6b0000
-    m_LastClickedID: 27562
-    m_ExpandedIDs: 00000000666b0000686b00006a6b00006c6b00006e6b0000706b0000726b0000746b0000786b0000946b000000ca9a3b
+    m_SelectedIDs: 1c6c0000
+    m_LastClickedID: 27676
+    m_ExpandedIDs: 00000000dc6b0000de6b0000e06b0000e26b0000e46b0000e66b0000e86b0000ea6b0000ec6b0000ee6b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Config
-      m_OriginalName: Config
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 27552
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_SearchString: 
@@ -1065,7 +1065,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000666b0000686b00006a6b00006c6b00006e6b0000706b0000726b0000746b0000786b00009e6b000000ca9a3b
+    m_ExpandedIDs: 00000000dc6b0000de6b0000e06b0000e26b0000e46b0000e66b0000e86b0000ea6b0000ec6b0000ee6b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 9acd00002c2901002e29010000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
