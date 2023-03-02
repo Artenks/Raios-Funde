@@ -1,8 +1,12 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class GameView : MonoBehaviour
 {
+    public event Action<string> GameTimerEventHandler;
+    public event Action<bool> GameStateEventHandler;
+
     public GameRun GameRun;
     public GameManager GameManager;
 
@@ -14,6 +18,7 @@ public class GameView : MonoBehaviour
     public TMP_Text PhraseText;
 
     public TimerConvert TimerConvert;
+
 
     void Awake()
     {
@@ -100,13 +105,16 @@ public class GameView : MonoBehaviour
 
     private void GameRun_GameEndedEventHandler(bool isWin)
     {
+        GameTimerEventHandler?.Invoke(TimerText.text);
         if (isWin)
         {
             Debug.Log("Jogo vencido");
+            GameStateEventHandler?.Invoke(true);
         }
         else
         {
             Debug.Log("Jogo perdido");
+            GameStateEventHandler?.Invoke(false);
         }
     }
 }
