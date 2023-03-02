@@ -73,9 +73,6 @@ public class GameRun : MonoBehaviour
         }
         else
         {
-            if (!PhraseInDictionary.ExistInDictionary(message) /*&& GameManager.Data.PlayMode == GameManager.PlayModes.SimpleMode*/)
-                return DataGame.PhraseCensured;
-
             for (var i = 0; i <= DataGame.Phrase.Length - 1; i++)
             {
                 if ($"{message[i].ToString().ToLower()}" == $"{DataGame.Phrase[i].ToString().ToLower()}" || message[i] == _lowerPhrase[i])
@@ -104,7 +101,6 @@ public class GameRun : MonoBehaviour
 
     public void PlayingGame(string user, string message)
     {
-
         if (GameManager.Data.State == GameManager.GameState.Playing)
         {
             var wrongPhrase = false;
@@ -126,6 +122,9 @@ public class GameRun : MonoBehaviour
             }
             else
             {
+                if (message.Length > 1 && !PhraseInDictionary.ExistInDictionary(message))
+                    return;
+
                 wrongPhrase = true;
             }
 
