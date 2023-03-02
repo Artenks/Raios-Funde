@@ -7926,6 +7926,7 @@ GameObject:
   - component: {fileID: 677768789}
   - component: {fileID: 677768788}
   - component: {fileID: 677768787}
+  - component: {fileID: 677768791}
   - component: {fileID: 677768790}
   m_Layer: 5
   m_Name: OauthInput
@@ -7977,10 +7978,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     m_PressedColor: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
     m_SelectedColor: {r: 1, g: 0.8353394, b: 0, a: 1}
-    m_DisabledColor: {r: 0.8679245, g: 0.7385703, b: 0, a: 0.23529412}
+    m_DisabledColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.2
   m_SpriteState:
@@ -8022,10 +8023,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 677768791}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: ChangeOnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 677768791}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: ChangeOnDeselect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -8107,6 +8132,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeForUpdate: {fileID: 184116267}
+--- !u!114 &677768791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677768785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956a1e5ee9d2b614a910e3139780c314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorOnSelect:
+    serializedVersion: 2
+    rgba: 4294967295
+  ColorOnDeselect:
+    serializedVersion: 2
+    rgba: 4291611852
+  TextToChange: {fileID: 1991969711}
 --- !u!1 &678741739
 GameObject:
   m_ObjectHideFlags: 0
@@ -9374,6 +9418,7 @@ GameObject:
   - component: {fileID: 781586335}
   - component: {fileID: 781586334}
   - component: {fileID: 781586337}
+  - component: {fileID: 781586338}
   m_Layer: 5
   m_Name: ChannelInput
   m_TagString: Untagged
@@ -9424,10 +9469,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     m_PressedColor: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
     m_SelectedColor: {r: 1, g: 0.8353394, b: 0, a: 1}
-    m_DisabledColor: {r: 1, g: 0.85433066, b: 0, a: 0.23529412}
+    m_DisabledColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.2
   m_SpriteState:
@@ -9469,10 +9514,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 781586338}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: ChangeOnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 781586338}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: ChangeOnDeselect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -9554,6 +9623,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeForUpdate: {fileID: 184116267}
+--- !u!114 &781586338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781586332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956a1e5ee9d2b614a910e3139780c314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorOnSelect:
+    serializedVersion: 2
+    rgba: 4294967295
+  ColorOnDeselect:
+    serializedVersion: 2
+    rgba: 4291611852
+  TextToChange: {fileID: 743223101}
 --- !u!1 &786625936
 GameObject:
   m_ObjectHideFlags: 0
@@ -10293,6 +10381,7 @@ GameObject:
   - component: {fileID: 865302284}
   - component: {fileID: 865302283}
   - component: {fileID: 865302286}
+  - component: {fileID: 865302287}
   m_Layer: 0
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -10388,10 +10477,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 865302287}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: ChangeOnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 865302287}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: ChangeOnDeselect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -10472,6 +10585,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b5f53d15e015c4f9a29f1b01493676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &865302287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865302281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956a1e5ee9d2b614a910e3139780c314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorOnSelect:
+    serializedVersion: 2
+    rgba: 4294967295
+  ColorOnDeselect:
+    serializedVersion: 2
+    rgba: 4278979596
+  TextToChange: {fileID: 1480396358}
 --- !u!1 &869200775
 GameObject:
   m_ObjectHideFlags: 0
@@ -11561,6 +11693,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls:
@@ -11571,6 +11715,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ChangeTextColor, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
