@@ -7,6 +7,10 @@ public class GameRun : MonoBehaviour
     public event Action<bool> GameEndedEventHandler;
     public event Action<int> GameTipsEventHandler;
     public event Action<int> GameChancesEventHandler;
+    public event Action<string> EndSniperUserEventHandler;
+
+    public event Action<string, string> EndPhraseEventHandler;
+
 
     public GameManager GameManager;
     public RankInfo RankInfo;
@@ -52,11 +56,11 @@ public class GameRun : MonoBehaviour
         var lettersTaked = 0;
         if (tipsOneChar)
         {
-            var charMessage = char.Parse(message.ToLower());
+            var charMessage = char.Parse(CaractereRemove.RemoveDiacritics(message));
 
             for (var i = 0; i <= DataGame.Phrase.Length - 1; i++)
             {
-                if ($"{DataGame.Phrase[i].ToString().ToLower()}" == $"{charMessage}" || _lowerPhrase == $"{charMessage}")
+                if ($"{DataGame.Phrase[i].ToString().ToLower()}" == $"{charMessage}" || $"{_lowerPhrase[i]}" == $"{charMessage}")
                 {
                     output += $"{DataGame.Phrase[i]}";
                     lettersTaked++;
@@ -100,6 +104,7 @@ public class GameRun : MonoBehaviour
 
     public void PlayingGame(string user, string message)
     {
+
         if (GameManager.Data.State == GameManager.GameState.Playing)
         {
             var wrongPhrase = false;
@@ -116,6 +121,8 @@ public class GameRun : MonoBehaviour
                     RankInfo.AddAUser(user, PlayerSniperPhrase());
                 }
                 DataGame.PhraseCensured = DataGame.Phrase;
+
+                EndSniperUserEventHandler?.Invoke(user);
             }
             else
             {
@@ -172,7 +179,9 @@ public class GameRun : MonoBehaviour
                     }
                 }
             }
+
             GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured);
+            EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
         }
     }
 
