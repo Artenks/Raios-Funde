@@ -103,7 +103,7 @@ public class GameRun : MonoBehaviour
     {
         if (GameManager.Data.State == GameManager.GameState.Playing)
         {
-            var wrongPhrase = false;
+            var wrongPhrase = true;
             _lowerPhrase = CaractereRemove.RemoveDiacritics(DataGame.Phrase.ToLower());
 
             if (message == DataGame.Phrase.ToLower() || message == _lowerPhrase)
@@ -124,15 +124,13 @@ public class GameRun : MonoBehaviour
             {
                 if (message.Length > 1 && !PhraseInDictionary.ExistInDictionary(message))
                     return;
-
-                wrongPhrase = true;
             }
 
-            if (GameManager.Modes.TipsOn && !LastWords())
+            if (!LastWords())
             {
                 var oldTips = DataGame.Tips;
 
-                if (DataGame.Tips > 0)
+                if (DataGame.Tips > 0 || !GameManager.Modes.TipsOn)
                 {
                     if (message.Length == DataGame.Phrase.Length || message.Length == 1)
                     {
