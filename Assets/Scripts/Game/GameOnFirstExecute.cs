@@ -18,9 +18,6 @@ public class GameOnFirstExecute : MonoBehaviour
             ResolutionScript.ResolutionOnFirstExecute();
             FirstTimeEventHandler?.Invoke();
         }
-        else
-        {
-            GameObject.Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);
     }
 }
