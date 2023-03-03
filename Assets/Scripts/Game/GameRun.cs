@@ -108,6 +108,8 @@ public class GameRun : MonoBehaviour
 
             if (message == DataGame.Phrase.ToLower() || message == _lowerPhrase)
             {
+                wrongPhrase = false;
+
                 if (RankInfo.UserExist(user))
                 {
                     RankInfo.UpdateUserScore(user, PlayerSniperPhrase());
@@ -120,11 +122,11 @@ public class GameRun : MonoBehaviour
 
                 EndSniperUserEventHandler?.Invoke(user);
             }
-            else
-            {
-                if (message.Length > 1 && !PhraseInDictionary.ExistInDictionary(message))
-                    return;
-            }
+            //else
+            //{
+            //if (message.Length > 1 && !PhraseInDictionary.ExistInDictionary(message))
+            //    return;
+            //}
 
             if (!LastWords())
             {
@@ -164,6 +166,7 @@ public class GameRun : MonoBehaviour
                     {
                         DataGame.Chances--;
                     }
+
                     if (oldChances != DataGame.Chances)
                     {
                         GameChancesEventHandler?.Invoke(DataGame.Chances);
