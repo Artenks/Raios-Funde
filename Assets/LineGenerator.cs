@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class LineGenerator : MonoBehaviour
 {
+    public event Action WrittedEventHandler;
+
     public PaperArea PaperArea;
 
     public Camera NowCamera;
@@ -17,6 +20,8 @@ public class LineGenerator : MonoBehaviour
             {
                 GameObject newLine = Instantiate(_linePrefab, this.gameObject.transform);
                 ActiveLines = newLine.GetComponent<Line>();
+
+                WrittedEventHandler?.Invoke();
             }
 
             if (ActiveLines != null)
