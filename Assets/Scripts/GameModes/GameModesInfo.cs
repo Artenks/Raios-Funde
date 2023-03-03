@@ -12,6 +12,7 @@ public class GameModesInfo : MonoBehaviour
 
     }
     public GameModeInfo Info;
+    public GameDataUpdate GameDataUpdate;
     public GameManager Manager;
     private string _path;
 
@@ -32,11 +33,18 @@ public class GameModesInfo : MonoBehaviour
         Load();
     }
 
+    public void CalculateInTimer()
+    {
+        if (Info.Timer > 60 && GameDataUpdate.CalculateTimer)
+        {
+            Info.Timer = Info.Timer - 40;
+            GameDataUpdate.CalculateTimer = false;
+        }
+    }
+
     private void Save()
     {
-        if (Info.Timer > 60)
-            Info.Timer = Info.Timer - 40;
-
+        CalculateInTimer();
         var contentList = JsonUtility.ToJson(Info, true);
 
         File.WriteAllText(_path, contentList);
@@ -55,9 +63,6 @@ public class GameModesInfo : MonoBehaviour
         }
 
         var content = JsonUtility.FromJson<GameModeInfo>(contentPath);
-
-        if (content.Timer > 60)
-            Info.Timer = content.Timer - 40;
 
         Info.Timer = content.Timer;
         Info.TimerID = content.TimerID;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DestroyFirstSignature : MonoBehaviour
+public class DestroyObjectOnEnable : MonoBehaviour
 {
     public GameObject ObjectToDestroy;
 

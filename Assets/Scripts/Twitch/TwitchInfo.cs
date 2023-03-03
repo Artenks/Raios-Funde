@@ -21,11 +21,6 @@ public class TwitchInfo : MonoBehaviour
     public TMP_Text ConsoleDebug;
 
     private string _path;
-    void Start()
-    {
-        LoadJson();
-        LoginEventHandler?.Invoke();
-    }
 
     public void SaveAInfo(bool isUser, string msg)
     {
@@ -71,7 +66,7 @@ public class TwitchInfo : MonoBehaviour
         ConsoleDebug.text = contentToSave;
     }
 
-    private void Awake()
+    private void Start()
     {
         _path = Application.persistentDataPath + "/TwitchLogin.json";
 
@@ -85,6 +80,9 @@ public class TwitchInfo : MonoBehaviour
             var file = File.CreateText(_path);
             file.Close();
         }
+
+        LoadJson();
+        LoginEventHandler?.Invoke();
     }
 
 }

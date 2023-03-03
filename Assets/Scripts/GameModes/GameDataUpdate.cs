@@ -16,6 +16,8 @@ public class GameDataUpdate : MonoBehaviour
 
     private TMP_Dropdown dropdown;
 
+    public bool CalculateTimer;
+
     private void Start()
     {
         dropdown = GetComponent<TMP_Dropdown>();
@@ -44,6 +46,8 @@ public class GameDataUpdate : MonoBehaviour
         {
             case GameStatus.timer:
                 Modes.Info.Timer = TimerToFloat(dropdown.captionText.text);
+                CalculateTimer = true;
+                Modes.CalculateInTimer();
                 GameStats?.Invoke("timer", dropdown.value);
                 break;
             case GameStatus.tips:

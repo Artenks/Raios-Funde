@@ -18,8 +18,6 @@ public class TimeForUpdate : MonoBehaviour
         if (!Data.RunTimer)
         {
             var realTime = timerTotal;
-            if (timerTotal > 60)
-                realTime = realTime - 40;
             Data.TotalTimer = realTime;
             Data.NowTimer = Data.TotalTimer;
             Data.RunTimer = true;
