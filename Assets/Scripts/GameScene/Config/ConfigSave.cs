@@ -1,12 +1,9 @@
 using System;
 using System.IO;
-using TMPro;
 using UnityEngine;
 
 public class ConfigSave : MonoBehaviour
 {
-    public TMP_Text ConsoleDebug;
-
     public ResolutionScript ResolutionScript;
     public MusicManager MusicManager;
     public GameOnFirstExecute GameOnFirstExecute;
@@ -86,8 +83,6 @@ public class ConfigSave : MonoBehaviour
         var content = JsonUtility.ToJson(Info, true);
 
         File.WriteAllText(_path, content);
-
-        ConsoleDebug.text = content;
 
     }
     public void Load()

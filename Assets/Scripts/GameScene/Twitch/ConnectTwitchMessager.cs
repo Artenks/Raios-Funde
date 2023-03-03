@@ -112,7 +112,7 @@ public class ConnectTwitchMessager : MonoBehaviour
     {
         if (!_messageGo)
         {
-            //Writer.WriteLine($"PRIVMSG #{channelName} : {messageSend}");
+            Writer.WriteLine($"PRIVMSG #{channelName} : {messageSend}");
 
         }
         Writer.WriteLine("CHECK");

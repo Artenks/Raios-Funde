@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using TMPro;
 using UnityEngine;
 using Application = UnityEngine.Application;
 
@@ -17,8 +16,6 @@ public class TwitchInfo : MonoBehaviour
     }
     [SerializeField]
     public Info ContentJson;
-
-    public TMP_Text ConsoleDebug;
 
     private string _path;
 
@@ -55,7 +52,6 @@ public class TwitchInfo : MonoBehaviour
         ContentJson.user = contentJson.user;
         ContentJson.oauth = contentJson.oauth;
 
-        ConsoleDebug.text = content;
     }
 
     private void SaveJson()
@@ -63,7 +59,6 @@ public class TwitchInfo : MonoBehaviour
         var contentToSave = JsonUtility.ToJson(ContentJson, true);
 
         File.WriteAllText(_path, contentToSave);
-        ConsoleDebug.text = contentToSave;
     }
 
     private void Start()
