@@ -13,13 +13,11 @@ public class FirstTimeOpened : MonoBehaviour
                 PaperContent.gameObject.SetActive(false);
                 Animator.SetTrigger("StartMove");
             }
-            Debug.Log("try");
 
         }
         catch
         {
             PlayerPrefs.SetInt("FirstTime", 0);
-            Debug.Log("catch");
         }
     }
 
