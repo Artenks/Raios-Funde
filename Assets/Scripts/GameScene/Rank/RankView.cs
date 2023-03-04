@@ -15,12 +15,7 @@ public class RankView : MonoBehaviour
         RankUpdate_RankUsersEventHandler();
     }
 
-    private void Awake()
-    {
-        RankUpdate.RankUsersEventHandler += RankUpdate_RankUsersEventHandler;
-    }
-
-    private void RankUpdate_RankUsersEventHandler()
+    public void RankUpdate_RankUsersEventHandler()
     {
         if (RankUpdate.Rank.FirstUser.User == "")
         {

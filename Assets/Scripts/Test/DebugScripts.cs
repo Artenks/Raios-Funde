@@ -3,8 +3,30 @@ using UnityEngine;
 
 public class DebugScripts : MonoBehaviour
 {
-    [SerializeField] TMP_Text fpsText;
+    public GameView GameView;
+
+    [SerializeField] TMP_Text FpsText;
+    [SerializeField] TMP_Text LogText;
     [SerializeField] GameObject LogPanelObject;
+
+    private string oldPhrase = null;
+
+    void Awake()
+    {
+        GameView.DebugPhraseEventHandler += GameView_DebugPhraseEventHandler;
+    }
+
+    private void GameView_DebugPhraseEventHandler(string phrase, string fullPhrase)
+    {
+        if (oldPhrase != fullPhrase)
+        {
+            if (fullPhrase == "")
+                return;
+
+            oldPhrase = fullPhrase;
+            LogText.text += $"Palavra:{fullPhrase}.\r\n";
+        }
+    }
 
     void Start()
     {
@@ -32,7 +54,7 @@ public class DebugScripts : MonoBehaviour
         if (LogPanelObject.activeInHierarchy)
         {
             var fps = 1f / Time.deltaTime;
-            fpsText.text = $"{fps.ToString("00")} Fps";
+            FpsText.text = $"{fps.ToString("00")} Fps";
         }
 
     }

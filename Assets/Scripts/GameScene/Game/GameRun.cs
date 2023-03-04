@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class GameRun : MonoBehaviour
 {
-    public event Action<string> GamePhraseEventHanndler;
+    public event Action<string, string> GamePhraseEventHanndler;
     public event Action<bool> GameEndedEventHandler;
     public event Action<int> GameTipsEventHandler;
     public event Action<int> GameChancesEventHandler;
     public event Action<string> EndSniperUserEventHandler;
 
     public event Action<string, string> EndPhraseEventHandler;
-
 
     public GameManager GameManager;
     public RankInfo RankInfo;
@@ -28,11 +27,14 @@ public class GameRun : MonoBehaviour
     }
     public DataInGame DataGame;
 
+    public DebugScripts DebugScripts;
+
     public void UpdateOnEnable()
     {
-        GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured);
+        GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
         GameTipsEventHandler?.Invoke(DataGame.Tips);
         GameChancesEventHandler?.Invoke(DataGame.Chances);
+
     }
 
     private string _lowerPhrase;
@@ -94,7 +96,7 @@ public class GameRun : MonoBehaviour
 
     public void TimerOver()
     {
-        RankInfo.Save();
+        //RankInfo.Save();
 
         GameEndedEventHandler?.Invoke(false);
     }
@@ -121,6 +123,7 @@ public class GameRun : MonoBehaviour
                 DataGame.PhraseCensured = DataGame.Phrase;
 
                 EndSniperUserEventHandler?.Invoke(user);
+
             }
             //else
             //{
@@ -180,7 +183,7 @@ public class GameRun : MonoBehaviour
                 }
             }
 
-            GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured);
+            GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
             EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
         }
     }

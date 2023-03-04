@@ -2,16 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RankInfo : MonoBehaviour
 {
+    public UnityEvent<List<string>> RankUpdaterEvent;
+
     [Serializable]
     public struct RankData
     {
         public List<string> UsersInfo;
     }
     public RankData Data;
-
 
     private string _path;
     private void Awake()
@@ -28,11 +30,7 @@ public class RankInfo : MonoBehaviour
             var file = File.CreateText(_path);
             file.Close();
         }
-    }
 
-    private void Start()
-    {
-        //user,score
         Load();
     }
 
@@ -40,6 +38,8 @@ public class RankInfo : MonoBehaviour
     {
         var contentPath = JsonUtility.ToJson(Data, true);
         File.WriteAllText(_path, contentPath);
+
+        RankUpdaterEvent?.Invoke(Data.UsersInfo);
     }
 
     public void Load()
@@ -55,6 +55,8 @@ public class RankInfo : MonoBehaviour
         var content = JsonUtility.FromJson<RankData>(contentPath);
 
         Data.UsersInfo = content.UsersInfo;
+
+        RankUpdaterEvent?.Invoke(Data.UsersInfo);
     }
 
     public string TakeAUser(string userInfo)
@@ -102,7 +104,6 @@ public class RankInfo : MonoBehaviour
     public void AddAUser(string user, int score)
     {
         Data.UsersInfo.Add($"{user},{score}");
-        Save();
     }
 
     public void UpdateUserScore(string user, int addInScore)
@@ -124,7 +125,5 @@ public class RankInfo : MonoBehaviour
         }
         if (valueChange)
             Data.UsersInfo[userIndex] = $"{user},{TakeAScoreUser(user) + addInScore}";
-
-        Save();
     }
 }

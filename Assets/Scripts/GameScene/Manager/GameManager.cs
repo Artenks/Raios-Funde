@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     public event Action<float> TimerEventHandler;
     public event Action<int> WordsCountEventHandler;
 
-    public SimpleGame TogetherMode;
+    public SimpleGame SimpleMode;
     public GameModesInfo ModeInfo;
     public GameRun GameRun;
+
+    public RankInfo RankInfo;
 
     public GameObject FinishBox;
     public GameObject TogetherBox;
@@ -124,7 +126,7 @@ public class GameManager : MonoBehaviour
         Data.State = GameState.Coding;
         _timeForUpdate = GetComponent<TimeForUpdate>();
 
-        TogetherMode.DisableEventHandler += TogetherGame_DisableEventHandler;
+        SimpleMode.DisableEventHandler += TogetherGame_DisableEventHandler;
     }
 
     private void Update()
@@ -168,10 +170,15 @@ public class GameManager : MonoBehaviour
 
                 if (Data.State == GameState.Win)
                 {
+                    RankInfo.Save();
                     GameScoreEventHandler?.Invoke(true);
                 }
                 else
+                {
+                    RankInfo.Load();
                     GameScoreEventHandler?.Invoke(false);
+                }
+
 
                 TogetherBox.SetActive(false);
                 CreateBox.SetActive(false);

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameView : MonoBehaviour
 {
+    public event Action<string, string> DebugPhraseEventHandler;
+
     public event Action<string> GameTimerEventHandler;
     public event Action<bool> GameStateEventHandler;
 
@@ -18,6 +20,8 @@ public class GameView : MonoBehaviour
     public TMP_Text PhraseText;
 
     public TimerConvert TimerConvert;
+
+    public DebugScripts DebugScripts;
 
 
     void Awake()
@@ -47,9 +51,10 @@ public class GameView : MonoBehaviour
 
     }
 
-    private void GameRun_GamePhraseEventHanndler(string phrase)
+    private void GameRun_GamePhraseEventHanndler(string phrase, string fullPhrase)
     {
         PhraseText.text = phrase;
+        DebugPhraseEventHandler?.Invoke(phrase, fullPhrase);
     }
 
     private void GameManager_TimerEventHandler(float timer)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RankUpdate : MonoBehaviour
@@ -36,14 +37,10 @@ public class RankUpdate : MonoBehaviour
     }
     public RankData Rank;
 
-    void Update()
+    public void UsersInRank(List<string> rankList)
     {
-        UsersInRank(RankInfo.Data);
-    }
-
-    private void UsersInRank(RankInfo.RankData rankData)
-    {
-        foreach (var userInfo in rankData.UsersInfo)
+        Debug.Log("userRank");
+        foreach (var userInfo in rankList)
         {
             var user = RankInfo.TakeAUser(userInfo);
             var score = RankInfo.TakeAScoreUser(user);
@@ -58,7 +55,6 @@ public class RankUpdate : MonoBehaviour
                 Rank.FirstUser.User = user;
                 Rank.FirstUser.Score = score;
 
-                RankUsersEventHandler?.Invoke();
             }
             else if (score > Rank.SecondUser.Score)
             {
@@ -70,7 +66,6 @@ public class RankUpdate : MonoBehaviour
                 Rank.SecondUser.User = user;
                 Rank.SecondUser.Score = score;
 
-                RankUsersEventHandler?.Invoke();
             }
             else if (score > Rank.ThirdUser.Score)
             {
@@ -82,8 +77,8 @@ public class RankUpdate : MonoBehaviour
                 Rank.ThirdUser.User = user;
                 Rank.ThirdUser.Score = score;
 
-                RankUsersEventHandler?.Invoke();
             }
+            RankUsersEventHandler?.Invoke();
         }
     }
 }
