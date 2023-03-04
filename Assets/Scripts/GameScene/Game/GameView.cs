@@ -95,12 +95,22 @@ public class GameView : MonoBehaviour
 
     private void GameRun_GameChancesEventHandler(int chances)
     {
-        ChancesText.text = $"{chances}";
+        if (chances > 1)
+            ChancesText.text = $"Chances: {chances}";
+        else if (chances == 1)
+            ChancesText.text = $"Última chance";
+        else if (chances <= 0)
+            ChancesText.text = $"Sem mais chances";
     }
 
     private void GameRun_GameTipsEventHandler(int tips)
     {
-        TipsText.text = $"{tips}";
+        if (tips > 1)
+            TipsText.text = $"Dicas: {tips}";
+        else if (tips == 1)
+            TipsText.text = $"Última dica";
+        else if (tips <= 0)
+            TipsText.text = $"Sem mais dicas";
     }
 
     private void GameRun_GameEndedEventHandler(bool isWin)

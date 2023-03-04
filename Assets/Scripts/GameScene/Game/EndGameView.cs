@@ -6,6 +6,7 @@ public class EndGameView : MonoBehaviour
     public GameView GameView;
     public GameScoreView GameScoreView;
     public GameRun GameRun;
+    public GameManager GameManager;
 
     public TMP_Text StreakText;
     public TMP_Text TimerText;
@@ -72,7 +73,15 @@ public class EndGameView : MonoBehaviour
 
     private void GameView_GameTimerEventHandler(string timerText)
     {
-        TimerText.text = timerText;
+        if (GameManager.Modes.TimerOn)
+        {
+            TimerText.text = timerText;
+            TimerText.gameObject.SetActive(true);
+        }
+        else
+        {
+            TimerText.gameObject.SetActive(false);
+        }
     }
 
     private void GameView_GameStateEventHandler(bool isWin)
