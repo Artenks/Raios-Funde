@@ -25,19 +25,32 @@ public class RankView : MonoBehaviour
         else
             Rank.SetActive(true);
 
+        if (RankUpdate.Rank.FirstUser.User == "")
+            return;
+
         FirstUser.text = $"{RankUpdate.Rank.FirstUser.User} {RankUpdate.Rank.FirstUser.Score}";
-        SecondUser.text = $"{RankUpdate.Rank.SecondUser.User} {RankUpdate.Rank.SecondUser.Score}";
-        ThirdUser.text = $"{RankUpdate.Rank.ThirdUser.User} {RankUpdate.Rank.ThirdUser.Score}";
 
         if (RankUpdate.Rank.FirstUser.Score > 1)
             FirstUser.text = $"{FirstUser.text} pontos";
         else
             FirstUser.text = $"{FirstUser.text} ponto";
 
+        if (RankUpdate.Rank.SecondUser.User == "")
+            return;
+
+
+        SecondUser.text = $"{RankUpdate.Rank.SecondUser.User} {RankUpdate.Rank.SecondUser.Score}";
+
         if (RankUpdate.Rank.SecondUser.Score > 1)
             SecondUser.text = $"{SecondUser.text} pontos";
         else
             SecondUser.text = $"{SecondUser.text} ponto";
+
+
+        if (RankUpdate.Rank.ThirdUser.User == "")
+            return;
+
+        ThirdUser.text = $"{RankUpdate.Rank.ThirdUser.User} {RankUpdate.Rank.ThirdUser.Score}";
 
         if (RankUpdate.Rank.ThirdUser.Score > 1)
             ThirdUser.text = $"{ThirdUser.text} pontos";

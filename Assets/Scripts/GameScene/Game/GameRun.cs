@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameRun : MonoBehaviour
 {
     public event Action<string, string> GamePhraseEventHanndler;
-    public event Action<string, string> AnagramPhraseEventHandler;
+    public event Action<string, string, bool> AnagramPhraseEventHandler;
     public event Action<bool> GameEndedEventHandler;
     public event Action<int> GameTipsEventHandler;
     public event Action<int> GameChancesEventHandler;
@@ -33,7 +33,7 @@ public class GameRun : MonoBehaviour
     public void UpdateOnEnable()
     {
         GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
-        AnagramPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
+        AnagramPhraseEventHandler?.Invoke(" ", " ", true);
         GameTipsEventHandler?.Invoke(DataGame.Tips);
         GameChancesEventHandler?.Invoke(DataGame.Chances);
 
@@ -143,7 +143,7 @@ public class GameRun : MonoBehaviour
                         DataGame.PhraseCensured = UpdateCensuredPhrase(user, message, tipsOneChar);
                     }
 
-                    AnagramPhraseEventHandler?.Invoke(message.ToLower(), DataGame.Phrase);
+                    AnagramPhraseEventHandler?.Invoke(message.ToLower(), DataGame.Phrase, false);
                 }
 
                 if (DataGame.Phrase.Length == message.Length || message.Length == 1)

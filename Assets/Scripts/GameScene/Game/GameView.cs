@@ -61,8 +61,14 @@ public class GameView : MonoBehaviour
         DebugPhraseEventHandler?.Invoke(phrase, fullPhrase);
     }
 
-    public void GameRun_AnagramPhraseEventHanndler(string message, string phrase)
+    public void GameRun_AnagramPhraseEventHanndler(string message, string phrase, bool clearString)
     {
+        if (clearString)
+        {
+            AnagramText.text = "";
+            return;
+        }
+
         if (SimilarLetters.IsSimilar(message, phrase))
         {
             AnagramText.text = SimilarLetters.FoundSimilars(message, phrase);

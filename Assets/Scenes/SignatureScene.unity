@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183f3967bfe9c2645908ed73edfb3171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoadIndex: 2
+  sceneToUnloadIndex: 1
 --- !u!1 &38169024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,7 +2639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c4c455cb66d0d4bad7ca8e86c1d888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsText: {fileID: 1884625461}
+  GameView: {fileID: 0}
+  FpsText: {fileID: 0}
+  LogText: {fileID: 0}
   LogPanelObject: {fileID: 487682619}
 --- !u!1 &548255038
 GameObject:
@@ -5033,7 +5037,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25636
+  m_Name: pb_Mesh175846
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
