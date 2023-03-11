@@ -12,6 +12,9 @@ public class GameView : MonoBehaviour
     public GameRun GameRun;
     public GameManager GameManager;
 
+    public SimilarLetters SimilarLetters;
+    public TMP_Text AnagramText;
+
     public TMP_Text TipsText;
     public TMP_Text ChancesText;
     public TMP_Text TimerText;
@@ -29,6 +32,7 @@ public class GameView : MonoBehaviour
         GameManager.WordsCountEventHandler += GameRun_WordsCountEventHandler;
 
         GameRun.GamePhraseEventHanndler += GameRun_GamePhraseEventHanndler;
+        GameRun.AnagramPhraseEventHandler += GameRun_AnagramPhraseEventHanndler;
         GameRun.GameEndedEventHandler += GameRun_GameEndedEventHandler;
 
         GameRun.GameTipsEventHandler += GameRun_GameTipsEventHandler;
@@ -55,6 +59,14 @@ public class GameView : MonoBehaviour
     {
         PhraseText.text = phrase;
         DebugPhraseEventHandler?.Invoke(phrase, fullPhrase);
+    }
+
+    public void GameRun_AnagramPhraseEventHanndler(string message, string phrase)
+    {
+        if (SimilarLetters.IsSimilar(message, phrase))
+        {
+            AnagramText.text = SimilarLetters.FoundSimilars(message, phrase);
+        }
     }
 
     private void GameManager_TimerEventHandler(float timer)

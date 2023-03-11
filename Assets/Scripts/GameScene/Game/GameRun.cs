@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameRun : MonoBehaviour
 {
     public event Action<string, string> GamePhraseEventHanndler;
+    public event Action<string, string> AnagramPhraseEventHandler;
     public event Action<bool> GameEndedEventHandler;
     public event Action<int> GameTipsEventHandler;
     public event Action<int> GameChancesEventHandler;
@@ -32,6 +33,7 @@ public class GameRun : MonoBehaviour
     public void UpdateOnEnable()
     {
         GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
+        AnagramPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
         GameTipsEventHandler?.Invoke(DataGame.Tips);
         GameChancesEventHandler?.Invoke(DataGame.Chances);
 
@@ -96,8 +98,6 @@ public class GameRun : MonoBehaviour
 
     public void TimerOver()
     {
-        //RankInfo.Save();
-
         GameEndedEventHandler?.Invoke(false);
     }
 
@@ -142,6 +142,8 @@ public class GameRun : MonoBehaviour
                         bool tipsOneChar = message.Length == 1;
                         DataGame.PhraseCensured = UpdateCensuredPhrase(user, message, tipsOneChar);
                     }
+
+                    AnagramPhraseEventHandler?.Invoke(message.ToLower(), DataGame.Phrase);
                 }
 
                 if (DataGame.Phrase.Length == message.Length || message.Length == 1)

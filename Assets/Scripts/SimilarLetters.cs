@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SimilarLetters : MonoBehaviour
 {
+    public CaractereRemove CaractereRemove;
+
+    private string _anagramOutput;
+    private string _oldPhrase;
+    private string _phraseNow;
     public bool IsSimilar(string userMessage, string phrase)
     {
         if (userMessage.Length != phrase.Length)
@@ -30,31 +35,58 @@ public class SimilarLetters : MonoBehaviour
 
     public string FoundSimilars(string userMessage, string phrase)
     {
-        var output = "";
-        bool isSimilar = false;
+        var lowerPhrase = CaractereRemove.RemoveDiacritics(phrase.ToLower());
 
-        var lowerPhrase = phrase.ToLower();
-        var lowerMessage = userMessage.ToLower();
+        if (lowerPhrase != _oldPhrase)
+        {
+            _anagramOutput = "";
+            _oldPhrase = lowerPhrase;
+            _phraseNow = lowerPhrase;
+
+        }
+
+        var lowerMessage = CaractereRemove.RemoveDiacritics(userMessage.ToLower());
+
+        var output = "";
 
         if (lowerPhrase != lowerMessage)
         {
             for (var i = 0; i <= lowerPhrase.Length - 1; i++)
             {
-                isSimilar = false;
-                for (var x = 0; i <= lowerMessage.Length - 1; i++)
+                for (var x = 0; x <= lowerMessage.Length - 1; x++)
                 {
-                    if (lowerPhrase[i] == lowerMessage[x])
+                    if (_anagramOutput.Contains(lowerMessage[x]))
+                        continue;
+
+                    if (_phraseNow[i] == lowerMessage[x])
                     {
                         output += phrase[i];
-                        isSimilar = false;
+                        HaveMoreLetter(_phraseNow, lowerMessage[i]);
                     }
-                }
-                if (!isSimilar)
-                {
-                    output += '_';
                 }
             }
         }
-        return output;
+        _anagramOutput += output;
+        return _anagramOutput;
+    }
+
+    private void HaveMoreLetter(string phrase, char letter)
+    {
+        var output = "";
+        bool clearIndex = true;
+
+        for (var i = 0; i <= phrase.Length - 1; i++)
+        {
+            if (letter == phrase[i] && clearIndex)
+            {
+                output += '_';
+                clearIndex = false;
+                continue;
+            }
+            output += phrase[i];
+        }
+        _phraseNow = output;
+
+        Debug.Log(output);
     }
 }
