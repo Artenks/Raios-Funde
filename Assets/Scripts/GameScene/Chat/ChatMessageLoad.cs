@@ -10,6 +10,9 @@ public class ChatMessageLoad : MonoBehaviour
     public TMP_Text UserText;
     public TMP_Text MessageText;
 
+    public ChatBoxColor ChatBoxColor;
+    public CaractereRemove CaractereRemove;
+
     public GameObject Badges;
 
     private TwitchTags _twitchTags;
@@ -28,6 +31,8 @@ public class ChatMessageLoad : MonoBehaviour
 
         UserHaveBadges();
         ChoiceUserPortrait();
+
+        ChatBoxColor.ChangeBoxColor(CaractereRemove.RemoveDiacritics(_twitchTags.Tags.Message));
     }
 
     private Color HexColorToRGB(string hex)
