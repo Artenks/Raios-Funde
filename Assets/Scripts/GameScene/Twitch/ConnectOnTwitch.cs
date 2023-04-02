@@ -18,7 +18,7 @@ public class ConnectOnTwitch : MonoBehaviour
 {
     public TakeMessage TakeMessage;
 
-    public event Action ResetChatEventHandler;
+    //public event Action ResetChatEventHandler;
     public event Action<bool> InputChangeHandler;
     public event Action<bool> ConnectionHandler;
 
@@ -82,7 +82,6 @@ public class ConnectOnTwitch : MonoBehaviour
     {
         if (_realTime >= _timeToReconnect)
         {
-            Debug.Log("Reconectando");
             TwitchReconnect();
         }
         else
@@ -104,10 +103,14 @@ public class ConnectOnTwitch : MonoBehaviour
         Writer.WriteLine("CAP REQ :twitch.tv/commands twitch.tv/tags");
         Writer.WriteLine("PING" + URL);
         Writer.Flush();
+
     }
 
     private void SubmitInputUser(string msg)
     {
+        if (msg.Contains("\n") || msg.Contains("\r"))
+            return;
+
         var msgNoSpace = _emptyToNull.RemoveSpace(msg);
 
         if (msgNoSpace != User)
@@ -120,7 +123,6 @@ public class ConnectOnTwitch : MonoBehaviour
         {
             InputChangeHandler?.Invoke(false);
         }
-        ResetChatEventHandler?.Invoke();
 
         User = msgNoSpace;
         Channel = User;
@@ -136,6 +138,9 @@ public class ConnectOnTwitch : MonoBehaviour
     }
     private void SubmitInputOAuth(string msg)
     {
+        if (msg.Contains("\n") || msg.Contains("\r"))
+            return;
+
         var msgNoSpace = _emptyToNull.RemoveSpace(msg);
 
         if (msgNoSpace != OAuth)
@@ -148,7 +153,7 @@ public class ConnectOnTwitch : MonoBehaviour
         {
             InputChangeHandler?.Invoke(false);
         }
-        ResetChatEventHandler?.Invoke();
+
 
         OAuth = msgNoSpace;
 
@@ -207,7 +212,6 @@ public class ConnectOnTwitch : MonoBehaviour
                 ReconnectInTime();
 
                 ConnectionHandler?.Invoke(false);
-                Debug.Log("off.Null");
             }
             return;
         }

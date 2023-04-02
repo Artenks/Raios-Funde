@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +10,7 @@ public class ChatBoxColor : MonoBehaviour
     private string _phrase;
     private void Awake()
     {
-        _gameInfos = GameObject.FindGameObjectWithTag("GameInfos").GetComponent<GameRun>();
+        _gameInfos = GameObject.FindGameObjectWithTag("GameInfos").GetComponentInChildren<GameRun>(true);
         _phrase = _gameInfos.DataGame.Phrase;
     }
 
@@ -24,20 +22,20 @@ public class ChatBoxColor : MonoBehaviour
         if (_phrase.ToLower() == userMessage.ToLower())
         {
             BoxImage.color = new Color32(167, 255, 0, 255);
-            Debug.Log("palavra certa");
+            //Debug.Log("palavra certa");
         }
         else
         {
             if (SimilarLetters.IsSimilar(userMessage, _phrase))
             {
-                Debug.Log("palavra similar");
+                //Debug.Log("palavra similar");
                 BoxImage.color = new Color32(255, 216, 0, 255);
                 SimilarLetters.FoundSimilars(userMessage, _phrase);
             }
             else
             {
                 BoxImage.color = new Color32(255, 0, 66, 255);
-                Debug.Log("palavra nao similar");
+                //Debug.Log("palavra nao similar");
             }
         }
 

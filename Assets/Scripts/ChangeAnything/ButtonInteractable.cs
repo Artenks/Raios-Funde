@@ -13,7 +13,7 @@ public class ButtonInteractable : MonoBehaviour
 
     private void Update()
     {
-        if (InputField.text.Length > 0)
+        if (InputField.text.Length > 1)
             _buttonConfirm.interactable = true;
         else
             _buttonConfirm.interactable = false;

@@ -23,7 +23,7 @@ MonoBehaviour:
   m_missingGlyphCharacter: 0
   m_ClearDynamicDataOnBuild: 1
   m_warningsDisabled: 1
-  m_defaultFontAsset: {fileID: 11400000, guid: 144710aacf305274892edb39233a5eb8, type: 2}
+  m_defaultFontAsset: {fileID: 11400000, guid: bc634b620b11a7840b0a189a7a2f3edd, type: 2}
   m_defaultFontAssetPath: Fonts & Materials/
   m_defaultFontSize: 36
   m_defaultAutoSizeMinRatio: 0.5
@@ -33,10 +33,10 @@ MonoBehaviour:
   m_autoSizeTextContainer: 0
   m_IsTextObjectScaleStatic: 0
   m_fallbackFontAssets:
-  - {fileID: 11400000, guid: f4bc5db286439b345a33ed08d0107e9e, type: 2}
-  - {fileID: 11400000, guid: 144710aacf305274892edb39233a5eb8, type: 2}
-  - {fileID: 11400000, guid: bfebb7cc47f70b14996a9ee5c34bf2fa, type: 2}
-  - {fileID: 11400000, guid: 2c2afcdaca194d842b4de4a49988f6dc, type: 2}
+  - {fileID: 11400000, guid: bc718ac4cb0330d45a2ec47b79e7bf44, type: 2}
+  - {fileID: 11400000, guid: bc634b620b11a7840b0a189a7a2f3edd, type: 2}
+  - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 11400000, guid: 81c29643c43145641863cfe179d754b1, type: 2}
   m_matchMaterialPreset: 1
   m_HideSubTextObjects: 1
   m_defaultSpriteAsset: {fileID: 11400000, guid: f9f88e50951d5744a9b6532970a87804, type: 2}
@@ -52,4 +52,4 @@ MonoBehaviour:
   m_StyleSheetsResourcePath: 
   m_leadingCharacters: {fileID: 4900000, guid: d82c1b31c7e74239bff1220585707d2b, type: 3}
   m_followingCharacters: {fileID: 4900000, guid: fade42e8bc714b018fac513c043d323b, type: 3}
-  m_UseModernHangulLineBreakingRules: 1
+  m_UseModernHangulLineBreakingRules: 0

@@ -1,12 +1,13 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameScoreView : MonoBehaviour
 {
     public event Action<int, int> StreakScoreEventHandler;
 
-    public TMP_Text ScoreCombo;
+    public TMP_Text ScoreStreak;
     public TMP_Text ScoreRecord;
 
     private GameScore _gameScore;
@@ -18,25 +19,25 @@ public class GameScoreView : MonoBehaviour
         _gameScore_UpdateScoreEventHandler(_gameScore.Score.Combo, _gameScore.Score.Record);
     }
 
-    private void _gameScore_UpdateScoreEventHandler(int combo, int record)
+    private void _gameScore_UpdateScoreEventHandler(int streak, int record)
     {
-        if (combo > 0)
+        if (streak > 0)
         {
-            ScoreCombo.gameObject.SetActive(true);
-            ScoreCombo.text = $"Combo: {combo}";
+            ScoreStreak.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+            ScoreStreak.text = $"{streak}";
         }
         else
-            ScoreCombo.gameObject.SetActive(false);
+            ScoreStreak.GetComponentInParent<Image>(true).gameObject.SetActive(false);
 
         if (record > 0)
         {
-            ScoreRecord.gameObject.SetActive(true);
-            ScoreRecord.text = $"Record: {record}";
+            ScoreRecord.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+            ScoreRecord.text = $"{record}";
         }
         else
-            ScoreRecord.gameObject.SetActive(false);
+            ScoreRecord.GetComponentInParent<Image>(true).gameObject.SetActive(false);
 
-        StreakScoreEventHandler?.Invoke(combo, record);
+        StreakScoreEventHandler?.Invoke(streak, record);
     }
 
 }

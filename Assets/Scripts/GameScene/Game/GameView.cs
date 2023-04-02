@@ -15,11 +15,11 @@ public class GameView : MonoBehaviour
     public SimilarLetters SimilarLetters;
     public TMP_Text AnagramText;
 
-    public TMP_Text TipsText;
-    public TMP_Text ChancesText;
+    public GameObject TipsText;
+    public GameObject ChancesText;
     public TMP_Text TimerText;
 
-    public TMP_Text TitleText;
+    //public TMP_Text TitleText;
     public TMP_Text PhraseText;
 
     public TimerConvert TimerConvert;
@@ -29,7 +29,7 @@ public class GameView : MonoBehaviour
 
     void Awake()
     {
-        GameManager.WordsCountEventHandler += GameRun_WordsCountEventHandler;
+        //GameManager.WordsCountEventHandler += GameRun_WordsCountEventHandler;
 
         GameRun.GamePhraseEventHanndler += GameRun_GamePhraseEventHanndler;
         GameRun.AnagramPhraseEventHandler += GameRun_AnagramPhraseEventHanndler;
@@ -42,18 +42,18 @@ public class GameView : MonoBehaviour
         GameManager.TimerEventHandler += GameManager_TimerEventHandler;
     }
 
-    private void GameRun_WordsCountEventHandler(int length)
-    {
-        if (length > 0)
-            TitleText.text = $"{length} letras restando";
-        else if (length == -1)
-            TitleText.text = $"Descubra a palavra";
-        else if (length <= 2)
-            TitleText.text = $"Última letra restando";
-        else if (length == 0)
-            TitleText.text = $"A palavra foi descoberta";
+    //private void GameRun_WordsCountEventHandler(int length)
+    //{
+    //    if (length > 0)
+    //        TitleText.text = $"{length} letras restando";
+    //    else if (length == -1)
+    //        TitleText.text = $"Descubra a palavra";
+    //    else if (length <= 2)
+    //        TitleText.text = $"Última letra restando";
+    //    else if (length == 0)
+    //        TitleText.text = $"A palavra foi descoberta";
 
-    }
+    //}
 
     private void GameRun_GamePhraseEventHanndler(string phrase, string fullPhrase)
     {
@@ -90,20 +90,20 @@ public class GameView : MonoBehaviour
     {
         if (chancesOn)
         {
-            ChancesText.gameObject.SetActive(true);
+            ChancesText.GetComponentInParent<TMP_Text>(true).gameObject.SetActive(true);
         }
         else
         {
-            ChancesText.gameObject.SetActive(false);
+            ChancesText.GetComponentInParent<TMP_Text>(true).gameObject.SetActive(false);
         }
 
         if (tipsOn)
         {
-            TipsText.gameObject.SetActive(true);
+            TipsText.GetComponentInParent<TMP_Text>(true).gameObject.SetActive(true);
         }
         else
         {
-            TipsText.gameObject.SetActive(false);
+            TipsText.GetComponentInParent<TMP_Text>(true).gameObject.SetActive(false);
         }
 
         if (timerOn)
@@ -118,22 +118,12 @@ public class GameView : MonoBehaviour
 
     private void GameRun_GameChancesEventHandler(int chances)
     {
-        if (chances > 1)
-            ChancesText.text = $"Chances: {chances}";
-        else if (chances == 1)
-            ChancesText.text = $"Última chance";
-        else if (chances <= 0)
-            ChancesText.text = $"Sem mais chances";
+        ChancesText.GetComponentInChildren<TMP_Text>(true).text = $"{chances}";
     }
 
     private void GameRun_GameTipsEventHandler(int tips)
     {
-        if (tips > 1)
-            TipsText.text = $"Dicas: {tips}";
-        else if (tips == 1)
-            TipsText.text = $"Última dica";
-        else if (tips <= 0)
-            TipsText.text = $"Sem mais dicas";
+        TipsText.GetComponentInChildren<TMP_Text>(true).text = $"{tips}";
     }
 
     private void GameRun_GameEndedEventHandler(bool isWin)
@@ -141,12 +131,12 @@ public class GameView : MonoBehaviour
         GameTimerEventHandler?.Invoke(TimerText.text);
         if (isWin)
         {
-            Debug.Log("Jogo vencido");
+            //Debug.Log("Jogo vencido");
             GameStateEventHandler?.Invoke(true);
         }
         else
         {
-            Debug.Log("Jogo perdido");
+            //Debug.Log("Jogo perdido");
             GameStateEventHandler?.Invoke(false);
         }
     }

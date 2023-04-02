@@ -84,6 +84,10 @@ public class TwitchTags : MonoBehaviour
         {
             TakeMessage.SendAMessage(Tags.DisplayName, Tags.Message);
         }
+        else if (Tags.DisplayName == ".")
+        {
+            TakeMessage.SendAMessage(Tags.DisplayName, Tags.Message);
+        }
     }
     private string TakeATag(string badgeInfo, string target)
     {

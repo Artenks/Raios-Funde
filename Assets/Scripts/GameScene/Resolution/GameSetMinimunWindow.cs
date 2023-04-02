@@ -4,7 +4,7 @@ public class GameSetMinimunWindow : MonoBehaviour
 {
     void Awake()
     {
-        MinimumWindowSize.Set(660, 500);
+        MinimumWindowSize.Set(640, 480);
     }
     private void OnApplicationQuit()
     {

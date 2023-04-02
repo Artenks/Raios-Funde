@@ -15,9 +15,11 @@ public class InputChangeView : MonoBehaviour
     private void _connectOnTwitch_InputChangeEventHandler(bool parametersChanged)
     {
         if (parametersChanged)
-            _twitchChat.OnChatMessage(".", "Lacuna atualizada.");
+            _twitchChat.OnChatSystemMessage("Lacuna atualizada.");
         else
-            _twitchChat.OnChatMessage(".", "Informação recarregada.");
+            _twitchChat.OnChatSystemMessage("Informação recarregada.");
 
     }
+
+
 }

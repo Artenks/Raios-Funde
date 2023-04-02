@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndGameView : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class EndGameView : MonoBehaviour
     public TMP_Text PhraseText;
     public TMP_Text SniperText;
 
+    private string RightColor = "#FFD500";
+    private string WrongColor = "#FF1124";
+
+
     private void Awake()
     {
         GameView.GameStateEventHandler += GameView_GameStateEventHandler;
@@ -28,46 +33,72 @@ public class EndGameView : MonoBehaviour
 
     private void GameRun_EndSniperUserEventHandler(string user)
     {
-        SniperText.gameObject.SetActive(true);
-        SniperText.text = $"{user} snipou a palavra!";
+        SniperText.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+        SniperText.text = $"{user} é uma lenda!";
     }
 
-    private void GameView_EndPhraseEventHandler(string censured, string phrase)
+    private void GameView_EndPhraseEventHandler(string censured, string phrase, bool rightPhrase)
     {
         var output = "";
 
-        for (var i = 0; i <= phrase.Length - 1; i++)
+        switch (rightPhrase)
         {
-            if (censured[i] == phrase[i])
-            {
-                output += $"<b><u>{phrase[i]}</u></b>";
-                continue;
-            }
+            case true:
+                for (var i = 0; i <= phrase.Length - 1; i++)
+                {
+                    if (censured[i] == '_')
+                    {
+                        output += $"<color={RightColor}><b><u>{phrase[i]}</u><b></color>";
+                        continue;
+                    }
+                    output += $"<b><u>{phrase[i]}</u></b>";
+                }
+                break;
+            case false:
+                for (var i = 0; i <= phrase.Length - 1; i++)
+                {
+                    if (censured[i] == phrase[i])
+                    {
+                        output += $"<b><u>{phrase[i]}</u></b>";
+                        continue;
+                    }
 
-            output += $"<color=#FFD500><b><u>{phrase[i]}</u><b></color>";
+                    output += $"<color={RightColor}><b><u>{phrase[i]}</u><b></color>";
+                }
+                break;
         }
 
         PhraseText.text = output;
+        if (!rightPhrase)
+            ChangePhraseColor();
+
         PhraseText.gameObject.SetActive(true);
+    }
+
+    private void ChangePhraseColor()
+    {
+        var phrase = PhraseText.text;
+        PhraseText.text = phrase.Replace($"{RightColor}", $"{WrongColor}");
     }
 
     private void GameScoreView_StreakScoreEventHandler(int streak, int record)
     {
         if (streak > 0)
         {
-            StreakText.gameObject.SetActive(true);
-            StreakText.text = $"Combo: {streak}";
+            StreakText.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+            StreakText.text = $"{streak}";
+
         }
         else
-            StreakText.gameObject.SetActive(false);
+            StreakText.GetComponentInParent<Image>(true).gameObject.SetActive(false);
 
         if (record > 0)
         {
-            RecordText.gameObject.SetActive(true);
-            RecordText.text = $"Record: {record}";
+            RecordText.GetComponentInParent<Image>(true).gameObject.SetActive(true);
+            RecordText.text = $"{record}";
         }
         else
-            RecordText.gameObject.SetActive(true);
+            RecordText.GetComponentInParent<Image>(true).gameObject.SetActive(false);
 
     }
 
@@ -87,8 +118,8 @@ public class EndGameView : MonoBehaviour
     private void GameView_GameStateEventHandler(bool isWin)
     {
         if (isWin)
-            TitleText.text = "Acertou a palavra!";
+            TitleText.text = "Lenda do Raios Funde";
         else
-            TitleText.text = "A palavra era:";
+            TitleText.text = "Fracasso do Raios Funde";
     }
 }

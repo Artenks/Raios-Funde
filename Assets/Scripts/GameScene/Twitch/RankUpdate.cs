@@ -39,7 +39,6 @@ public class RankUpdate : MonoBehaviour
 
     public void UsersInRank(List<string> rankList)
     {
-        Debug.Log("userRank");
         foreach (var userInfo in rankList)
         {
             var user = RankInfo.TakeAUser(userInfo);

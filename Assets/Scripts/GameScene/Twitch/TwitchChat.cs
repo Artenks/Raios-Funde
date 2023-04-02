@@ -3,17 +3,20 @@ using UnityEngine;
 
 public class TwitchChat : MonoBehaviour
 {
-    public ConnectOnTwitch ConnectOnTwitch;
+    //public ConnectOnTwitch ConnectOnTwitch;
 
     public TwitchTags TwitchTags;
 
     public GameObject ChatPrefab;
+    public GameObject ChatSystem;
     public GameObject ChatMessages;
+
+    public string SystemMessage;
 
     [SerializeField]
     private List<GameObject> chatList = new List<GameObject>();
 
-    public void OnChatMessage(string pChatter, string pMessage)
+    public void OnChatMessage(string _, string pMessage)
     {
         if (pMessage == "")
             return;
@@ -23,6 +26,12 @@ public class TwitchChat : MonoBehaviour
 
         ClearChat();
         chatList.Add(Instantiate(ChatPrefab, ChatMessages.GetComponent<RectTransform>().position, Quaternion.identity, ChatMessages.transform));
+    }
+    public void OnChatSystemMessage(string systemMessage)
+    {
+        ClearChat();
+        SystemMessage = systemMessage;
+        chatList.Add(Instantiate(ChatSystem, ChatMessages.GetComponent<RectTransform>().position, Quaternion.identity, ChatMessages.transform));
     }
 
     private void ClearOnRestart()
@@ -36,7 +45,7 @@ public class TwitchChat : MonoBehaviour
 
     private void ClearChat()
     {
-        if (chatList.Count >= 8)
+        if (chatList.Count >= 20)
         {
             Destroy(chatList[0]);
             chatList.RemoveAt(0);
@@ -45,7 +54,7 @@ public class TwitchChat : MonoBehaviour
 
     private void Awake()
     {
-        ConnectOnTwitch.ResetChatEventHandler += ConnectOnTwitch_ResetChatEventHandler;
+        //ConnectOnTwitch.ResetChatEventHandler += ConnectOnTwitch_ResetChatEventHandler;
     }
 
     private void ConnectOnTwitch_ResetChatEventHandler()

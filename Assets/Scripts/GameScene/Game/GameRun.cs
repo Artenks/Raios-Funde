@@ -10,7 +10,7 @@ public class GameRun : MonoBehaviour
     public event Action<int> GameChancesEventHandler;
     public event Action<string> EndSniperUserEventHandler;
 
-    public event Action<string, string> EndPhraseEventHandler;
+    public event Action<string, string, bool> EndPhraseEventHandler;
 
     public GameManager GameManager;
     public RankInfo RankInfo;
@@ -120,10 +120,9 @@ public class GameRun : MonoBehaviour
                 {
                     RankInfo.AddAUser(user, PlayerSniperPhrase());
                 }
+                EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase, true);
                 DataGame.PhraseCensured = DataGame.Phrase;
-
                 EndSniperUserEventHandler?.Invoke(user);
-
             }
             //else
             //{
@@ -186,7 +185,10 @@ public class GameRun : MonoBehaviour
             }
 
             GamePhraseEventHanndler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
-            EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
+            if (DataGame.PhraseCensured != DataGame.Phrase)
+            {
+                EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase, false);
+            }
         }
     }
 
@@ -227,6 +229,7 @@ public class GameRun : MonoBehaviour
         if (DataGame.PhraseCensured == DataGame.Phrase)
         {
             GameEndedEventHandler?.Invoke(true);
+            //EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
             GameManager.Data.State = GameManager.GameState.Win;
         }
     }

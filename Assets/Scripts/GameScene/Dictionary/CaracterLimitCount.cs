@@ -21,6 +21,6 @@ public class CaracterLimitCount : MonoBehaviour
         if (phraseLength <= 10)
             _text.color = new Color32(255, 0, 86, 255);
         else
-            _text.color = new Color32(255, 213, 0, 255);
+            _text.color = new Color32(255, 255, 255, 255);
     }
 }
