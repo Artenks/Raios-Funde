@@ -3,9 +3,11 @@
 public class SimilarLetters : MonoBehaviour
 {
     public CaractereRemove CaractereRemove;
+    public CreateAnagram CreateAnagram;
 
     private string _anagramOutput;
     private string _oldPhrase;
+    private string _originalMessage;
     private string _phraseNow;
     public bool IsSimilar(string userMessage, string phrase)
     {
@@ -40,31 +42,31 @@ public class SimilarLetters : MonoBehaviour
             _anagramOutput = "";
             _oldPhrase = lowerPhrase;
             _phraseNow = lowerPhrase;
-
         }
 
-        var lowerMessage = CaractereRemove.RemoveDiacritics(userMessage.ToLower());
+        _originalMessage = CaractereRemove.RemoveDiacritics(userMessage.ToLower());
 
         var output = "";
 
-        if (lowerPhrase != lowerMessage)
+        if (lowerPhrase != _originalMessage)
         {
             for (var i = 0; i <= lowerPhrase.Length - 1; i++)
             {
-                for (var x = 0; x <= lowerMessage.Length - 1; x++)
+                for (var x = 0; x <= _originalMessage.Length - 1; x++)
                 {
-                    if (_anagramOutput.Contains(lowerMessage[x]))
+                    if (_anagramOutput.Contains(_originalMessage[x]) && _phraseNow[x] == '_')
                         continue;
 
-                    if (_phraseNow[i] == lowerMessage[x])
+                    if (_phraseNow[i] == _originalMessage[x])
                     {
                         output += phrase[i];
-                        HaveMoreLetter(_phraseNow, lowerMessage[i]);
+                        HaveMoreLetter(_phraseNow, _originalMessage[x]);
                     }
                 }
             }
         }
-        _anagramOutput += output;
+        //_anagramOutput += output;
+        _anagramOutput = CreateAnagram.TransformInAnagram(output.Replace("_", ""));
         return _anagramOutput;
     }
 
@@ -72,6 +74,17 @@ public class SimilarLetters : MonoBehaviour
     {
         var output = "";
         bool clearIndex = true;
+
+        //for (var i = 0; i <= phrase.Length - 1; i++)
+        //{
+        //    if (letter == phrase[i] && clearIndex)
+        //    {
+        //        output += '_';
+        //        clearIndex = false;
+        //        continue;
+        //    }
+        //    output += phrase[i];
+        //}
 
         for (var i = 0; i <= phrase.Length - 1; i++)
         {
@@ -81,10 +94,9 @@ public class SimilarLetters : MonoBehaviour
                 clearIndex = false;
                 continue;
             }
+
             output += phrase[i];
         }
         _phraseNow = output;
-
-        Debug.Log(output);
     }
 }

@@ -15,6 +15,8 @@ public class GameRun : MonoBehaviour
     public GameManager GameManager;
     public RankInfo RankInfo;
 
+    public CreateAnagram CreateAnagram;
+
     public PhraseInDictionary PhraseInDictionary;
     public CaractereRemove CaractereRemove;
 
@@ -37,6 +39,7 @@ public class GameRun : MonoBehaviour
         GameTipsEventHandler?.Invoke(DataGame.Tips);
         GameChancesEventHandler?.Invoke(DataGame.Chances);
 
+        CreateAnagram.ConstructPhraseAnagram(DataGame.Phrase);
     }
 
     private string _lowerPhrase;
@@ -124,11 +127,6 @@ public class GameRun : MonoBehaviour
                 DataGame.PhraseCensured = DataGame.Phrase;
                 EndSniperUserEventHandler?.Invoke(user);
             }
-            //else
-            //{
-            //if (message.Length > 1 && !PhraseInDictionary.ExistInDictionary(message))
-            //    return;
-            //}
 
             if (!LastWords())
             {
@@ -229,7 +227,6 @@ public class GameRun : MonoBehaviour
         if (DataGame.PhraseCensured == DataGame.Phrase)
         {
             GameEndedEventHandler?.Invoke(true);
-            //EndPhraseEventHandler?.Invoke(DataGame.PhraseCensured, DataGame.Phrase);
             GameManager.Data.State = GameManager.GameState.Win;
         }
     }

@@ -30,7 +30,7 @@ public class ChatBoxColor : MonoBehaviour
             {
                 //Debug.Log("palavra similar");
                 BoxImage.color = new Color32(255, 216, 0, 255);
-                SimilarLetters.FoundSimilars(userMessage, _phrase);
+                //SimilarLetters.FoundSimilars(userMessage, _phrase);
             }
             else
             {
