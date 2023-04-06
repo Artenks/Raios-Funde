@@ -6,7 +6,7 @@ public class ShortcultKey : MonoBehaviour
     public TMP_InputField InputFieldToSelect;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             InputFieldToSelect.Select();
         }

@@ -59,6 +59,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 #videos and images
-.mp4
-.jpg
-.png
+*.mp4
+*.jpg
+*.png

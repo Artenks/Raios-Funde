@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0009918213, y: 0}
+  m_AnchoredPosition: {x: 0.0010070801, y: 0}
   m_SizeDelta: {x: 0.0020447, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4330697728936105346
@@ -150,6 +150,8 @@ GameObject:
   - component: {fileID: 4330697729388043677}
   - component: {fileID: 4330697729388043676}
   - component: {fileID: 4330697729388043675}
+  - component: {fileID: 6104886170240923047}
+  - component: {fileID: 45318822168063907}
   m_Layer: 5
   m_Name: LargeButton
   m_TagString: Untagged
@@ -235,11 +237,11 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 0.9450981, g: 0.9450981, b: 0.9450981, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.87516755, b: 0.18431371, a: 1}
-    m_PressedColor: {r: 1, g: 0.8784314, b: 0.18431373, a: 1}
+    m_HighlightedColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
     m_DisabledColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
     m_ColorMultiplier: 1
@@ -276,3 +278,46 @@ MonoBehaviour:
   TextDisabledOnHover: 
   PrefabObject: {fileID: 6846518516473099407, guid: 1ba121a0d36baee4c8e018030f970303, type: 3}
   ObjectState: 1
+--- !u!114 &6104886170240923047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330697729388043678}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212502332524091479e816ba97e90162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
+  ObjectToAppear: {fileID: 0}
+  ObjectToDisappear: {fileID: 0}
+  AppearList: 0
+  ObjectsToAppear: []
+  DisappearList: 0
+  ObjectsToDesappear: []
+  UsesFinishReturn: 0
+  FinishReturn: {fileID: 0}
+  TimeToAwait: 0.6
+  Timer: {fileID: 0}
+--- !u!95 &45318822168063907
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330697729388043678}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9f45c4cb7f202b48829484bca51227f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 public class GameOnFirstExecute : MonoBehaviour
 {
@@ -10,14 +11,31 @@ public class GameOnFirstExecute : MonoBehaviour
     public ResolutionScript ResolutionScript;
     public MusicManager MusicManager;
 
+    public List<GameObject> ObjectsToDisable;
+    public GameObject SceneInFirstTime;
+
     public void FirstExecuteInvoke()
     {
         if (ConfigSave.Info.noIsFirstTime == false)
         {
+            SceneInFirstTime.SetActive(true);
+            RemoveObjectsOnFirstTime();
+
             MusicResetStateEventHandler?.Invoke();
             ResolutionScript.ResolutionOnFirstExecute();
             FirstTimeEventHandler?.Invoke();
         }
-        Destroy(this.gameObject);
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void RemoveObjectsOnFirstTime()
+    {
+        foreach (GameObject obj in ObjectsToDisable)
+        {
+            obj.SetActive(false);
+        }
     }
 }

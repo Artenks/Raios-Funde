@@ -52,13 +52,13 @@ public class TwitchChat : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        //ConnectOnTwitch.ResetChatEventHandler += ConnectOnTwitch_ResetChatEventHandler;
-    }
+    //private void Awake()
+    //{
+    //ConnectOnTwitch.ResetChatEventHandler += ConnectOnTwitch_ResetChatEventHandler;
+    //}
 
-    private void ConnectOnTwitch_ResetChatEventHandler()
-    {
-        ClearOnRestart();
-    }
+    //private void ConnectOnTwitch_ResetChatEventHandler()
+    //{
+    //    ClearOnRestart();
+    //}
 }

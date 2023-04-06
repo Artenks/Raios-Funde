@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public event Action ReceiveAPhraseEventHandler;
     public event Action<bool, bool, bool> GameModesEventHandler;
     public event Action<float> TimerEventHandler;
-    public event Action<int> WordsCountEventHandler;
+    //public event Action<int> WordsCountEventHandler;
 
     public SimpleGame SimpleMode;
     public GameModesInfo ModeInfo;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public PhraseFromDictionary PhraseFromDictionary;
 
-    private int _countLetters = 0;
+    //private int _countLetters = 0;
 
     public enum PlayModes
     {
@@ -73,8 +73,6 @@ public class GameManager : MonoBehaviour
     {
         ResetCounter();
         ConfigurateGameModes();
-
-        WordsCountEventHandler?.Invoke(-1);
 
         Data.State = GameState.Waiting;
     }
@@ -143,15 +141,14 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Playing:
-                for (var i = 0; i <= GameRun.DataGame.Phrase.Length - 1; i++)
-                {
-                    if (i == 0)
-                        _countLetters = 0;
+                //for (var i = 0; i <= GameRun.DataGame.Phrase.Length - 1; i++)
+                //{
+                //    if (i == 0)
+                //        _countLetters = 0;
 
-                    if (GameRun.DataGame.PhraseCensured[i] == '_')
-                        _countLetters++;
-                }
-                WordsCountEventHandler?.Invoke(_countLetters);
+                //    if (GameRun.DataGame.PhraseCensured[i] == '_')
+                //        _countLetters++;
+                //}
                 if (Modes.TimerOn)
                 {
                     var timer = _timeForUpdate.StartTheCount(Data.Timer);
