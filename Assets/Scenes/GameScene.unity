@@ -23705,7 +23705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5294865384490503467, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: TextOnMouseHover
-      value: "\u2764"
+      value: Obrigado!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
@@ -23815,6 +23815,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1327642254454898952, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_margin.y
+      value: -0.17923737
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327642254454898952, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: bc634b620b11a7840b0a189a7a2f3edd, type: 2}
@@ -23834,13 +23838,33 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1327642254454898952, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327642254454898952, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327642254454898955, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1327642254454898955, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_SizeDelta.x
       value: -0.0005188
       objectReference: {fileID: 0}
     - target: {fileID: 1327642254454898955, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327642254454898955, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.00024414062
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327642254454898955, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00006866455
       objectReference: {fileID: 0}
     - target: {fileID: 1327642255575084896, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_RootOrder
@@ -23917,6 +23941,10 @@ PrefabInstance:
     - target: {fileID: 1327642255575084910, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640202587110117578, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2640202587110117578, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -24016,7 +24044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5294865384490503467, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: TextOnMouseHover
-      value: "Bom, at\xE9 logo \u2764"
+      value: "At\xE9 logo..."
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1047676134642810180, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
@@ -33001,7 +33029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1327642255575084896, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.2085571
+      value: 1.2091064
       objectReference: {fileID: 0}
     - target: {fileID: 1327642255575084896, guid: a91eab3f06453f0448cbde7eb298dbb8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
