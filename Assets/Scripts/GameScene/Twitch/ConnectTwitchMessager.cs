@@ -37,6 +37,15 @@ public class ConnectTwitchMessager : MonoBehaviour
     private float _timeToReconnect = 1.0f;
     private float _realTime = 0;
 
+    public void SendConnectionMessage()
+    {
+        if (_messagerStatus != MessagerStatus.Disconnected)
+        {
+            _messageGo = false;
+            StartCoroutine(WriteInChannel());
+        }
+    }
+
     public void MessagerTryConnect()
     {
         _messagerStatus = MessagerStatus.TryConnect;
@@ -73,7 +82,6 @@ public class ConnectTwitchMessager : MonoBehaviour
         MessagerTryConnect();
     }
 
-    //para ChatMessage
     public void SendAMessage(string messageSend)
     {
         if (User != null)
@@ -156,18 +164,13 @@ public class ConnectTwitchMessager : MonoBehaviour
             {
                 MessageRead = messageRead;
             }
-
-            if (_messagerStatus == MessagerStatus.TryConnect)
-            {
-                StartCoroutine(WriteInChannel());
-            }
         }
 
     }
 
     private IEnumerator WriteInChannel()
     {
-        WriteToChannel(Channel, "Raios Funde conectou chefia BroBalt ");
+        WriteToChannel(Channel, "Hhhehehe poggers");
         _messageGo = true;
         yield return new WaitForEndOfFrame();
 

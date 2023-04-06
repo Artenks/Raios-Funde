@@ -92,7 +92,8 @@ public class OnMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     private void DisableAndDestroyObjects()
     {
-        _infoObject.GetComponent<Animator>().SetTrigger("Desappear");
+        //_infoObject.GetComponent<Animator>().SetTrigger("Desappear");
+        _infoObject.GetComponent<EndInfo>().DestroyObject = true;
     }
 
     private void UpdateCoponentsStats()

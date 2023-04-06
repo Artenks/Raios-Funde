@@ -18,7 +18,6 @@ public class ConnectOnTwitch : MonoBehaviour
 {
     public TakeMessage TakeMessage;
 
-    //public event Action ResetChatEventHandler;
     public event Action<bool> InputChangeHandler;
     public event Action<bool> ConnectionHandler;
 
@@ -218,6 +217,8 @@ public class ConnectOnTwitch : MonoBehaviour
 
         if (PingCounter >= 5.0f && Twitch.Available == 0)
         {
+            ConnectionHandler?.Invoke(true);
+
             Writer.WriteLine("PING" + URL);
             Writer.Flush();
 

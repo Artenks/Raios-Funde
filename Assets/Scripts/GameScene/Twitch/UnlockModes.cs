@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +5,15 @@ public class UnlockModes : MonoBehaviour
 {
     public ConnectOnTwitch ConnectOnTwitch;
 
-    private TMP_Text text;
     private Button button;
+
+    private void OnEnable()
+    {
+
+    }
 
     private void Awake()
     {
-        text = GetComponentInChildren<TMP_Text>();
         button = GetComponent<Button>();
 
         ConnectOnTwitch_ConnectionEventHandler(false);
@@ -23,13 +25,13 @@ public class UnlockModes : MonoBehaviour
     {
         if (isConnected)
         {
-            text.isRightToLeftText = false;
             button.interactable = true;
         }
         else
         {
-            text.isRightToLeftText = true;
             button.interactable = false;
         }
     }
+
+
 }
