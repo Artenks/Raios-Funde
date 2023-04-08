@@ -8,6 +8,7 @@ public class EndGameView : MonoBehaviour
     public GameScoreView GameScoreView;
     public GameRun GameRun;
     public GameManager GameManager;
+    public EndMusicChoice EndMusicChoice;
 
     public TMP_Text StreakText;
     public TMP_Text TimerText;
@@ -118,8 +119,14 @@ public class EndGameView : MonoBehaviour
     private void GameView_GameStateEventHandler(bool isWin)
     {
         if (isWin)
+        {
             TitleText.text = "Lenda do Raios Funde";
+            EndMusicChoice.ChoiceAEndMusic(true);
+        }
         else
+        {
             TitleText.text = "Fracasso do Raios Funde";
+            EndMusicChoice.ChoiceAEndMusic(false);
+        }
     }
 }

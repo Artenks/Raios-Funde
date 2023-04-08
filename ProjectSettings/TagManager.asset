@@ -9,6 +9,8 @@ TagManager:
   - Badge
   - Connection
   - GameInfos
+  - EffectSounds
+  - InitialMusic
   layers:
   - Default
   - TransparentFX

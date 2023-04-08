@@ -15,26 +15,29 @@ public class MusicManager : MonoBehaviour
     }
     public AudioInfo Info;
 
-    public AudioSource CaretakerMusic;
+    public AudioSource MusicSource;
     public Toggle MusicButton;
 
     public Slider SliderPreview;
     public TMP_Text SliderText;
 
     public GameOnFirstExecute GameOnFirstExecute;
+    public EffectsManager EffectsManager;
 
     private void Awake()
     {
-        GameOnFirstExecute.MusicResetStateEventHandler += GameOnFirstExecute_MusicResetStateEventHandler;
+        GameOnFirstExecute.SoundResetStateEventHandler += GameOnFirstExecute_SoundsResetStateEventHandler;
     }
 
-    private void GameOnFirstExecute_MusicResetStateEventHandler()
+    private void GameOnFirstExecute_SoundsResetStateEventHandler()
     {
         MusicButton.isOn = true;
         MusicOn();
 
         Info.volume = 1f;
         SliderVolume(false);
+
+        EffectsManager.EffectReset();
     }
 
     public void SliderVolume(bool updateVolume)
@@ -56,7 +59,7 @@ public class MusicManager : MonoBehaviour
 
             SliderText.text = $"{slidePorcentValue}%";
         }
-        CaretakerMusic.volume = Info.volume / 2;
+        MusicSource.volume = Info.volume;
 
         MusicEventHandler?.Invoke();
     }
@@ -65,13 +68,17 @@ public class MusicManager : MonoBehaviour
     {
         if (MusicButton.isOn)
         {
-            CaretakerMusic.Play();
+            MusicSource.enabled = true;
+
+            MusicSource.Play();
             Info.music = true;
         }
         else
         {
-            CaretakerMusic.Stop();
+            MusicSource.Stop();
             Info.music = false;
+
+            MusicSource.enabled = false;
         }
         MusicEventHandler?.Invoke();
     }

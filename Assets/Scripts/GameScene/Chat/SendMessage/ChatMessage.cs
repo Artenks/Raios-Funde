@@ -10,7 +10,6 @@ public class ChatMessage : MonoBehaviour
     {
         _connectTwitchMessager.SendAMessage(msg);
         _inputField.text = "";
-        Debug.Log("mensagem enviada");
 
         _inputField.ActivateInputField();
     }

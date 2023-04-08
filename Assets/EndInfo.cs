@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EndInfo : MonoBehaviour
 {
-    public bool DestroyObject = false;
+    public bool DestroyObject;
     private Animator _animator;
     private DestroyWhenOver _destroyWhenOver;
 

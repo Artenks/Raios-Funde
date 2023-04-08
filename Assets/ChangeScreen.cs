@@ -40,7 +40,6 @@ public class ChangeScreen : MonoBehaviour
             }
             else
             {
-                Debug.Log(FinishReturn);
                 FinishReturn.OnClickReturn();
             }
             if (DisappearList)

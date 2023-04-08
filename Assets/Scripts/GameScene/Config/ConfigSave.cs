@@ -6,6 +6,7 @@ public class ConfigSave : MonoBehaviour
 {
     public ResolutionScript ResolutionScript;
     public MusicManager MusicManager;
+    public EffectsManager EffectsManager;
     public GameOnFirstExecute GameOnFirstExecute;
 
     private string _path;
@@ -29,7 +30,9 @@ public class ConfigSave : MonoBehaviour
         public struct Audio
         {
             public bool noMusic;
-            public float volume;
+            public float musicVolume;
+            public bool noSoundEffects;
+            public float effectsVolume;
         }
         public Audio audio;
     }
@@ -53,6 +56,7 @@ public class ConfigSave : MonoBehaviour
 
         ResolutionScript.ResolutionEventHandler += ResolutionScript_ResolutionEventHandler;
         MusicManager.MusicEventHandler += MusicManager_MusicEventHandler;
+        EffectsManager.EffectsEventHandler += EffectsManager_EffectsEventHandler;
         GameOnFirstExecute.FirstTimeEventHandler += GameOnFirstExecute_FirstTimeEventHandler;
     }
 
@@ -64,8 +68,14 @@ public class ConfigSave : MonoBehaviour
 
     private void MusicManager_MusicEventHandler()
     {
-        Info.audio.volume = MusicManager.Info.volume;
+        Info.audio.musicVolume = MusicManager.Info.volume;
         Info.audio.noMusic = !MusicManager.Info.music;
+        Save();
+    }
+    private void EffectsManager_EffectsEventHandler()
+    {
+        Info.audio.effectsVolume = EffectsManager.Info.volume;
+        Info.audio.noSoundEffects = !EffectsManager.Info.effects;
         Save();
     }
 
@@ -104,7 +114,10 @@ public class ConfigSave : MonoBehaviour
         Info.screen.height = content.screen.height;
 
         Info.audio.noMusic = content.audio.noMusic;
-        Info.audio.volume = content.audio.volume;
+        Info.audio.musicVolume = content.audio.musicVolume;
+
+        Info.audio.noSoundEffects = content.audio.noSoundEffects;
+        Info.audio.effectsVolume = content.audio.effectsVolume;
 
         UpdateSecondaryInfo();
         Save();
@@ -118,7 +131,10 @@ public class ConfigSave : MonoBehaviour
         ResolutionScript.Info.height = Info.screen.height;
 
         MusicManager.Info.music = !Info.audio.noMusic;
-        MusicManager.Info.volume = Info.audio.volume;
+        MusicManager.Info.volume = Info.audio.musicVolume;
+
+        EffectsManager.Info.effects = !Info.audio.noSoundEffects;
+        EffectsManager.Info.volume = Info.audio.effectsVolume;
     }
 
 }

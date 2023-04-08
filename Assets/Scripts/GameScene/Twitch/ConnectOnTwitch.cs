@@ -170,7 +170,7 @@ public class ConnectOnTwitch : MonoBehaviour
     private void Awake()
     {
         _twitchMessager = GetComponent<ConnectTwitchMessager>();
-        _twitchInfo = GameObject.Find("Load").GetComponent<TwitchInfo>();
+        _twitchInfo = GameObject.Find("Informations").GetComponent<TwitchInfo>();
 
         TwitchReconnect();
     }
@@ -209,16 +209,12 @@ public class ConnectOnTwitch : MonoBehaviour
             {
                 PingCounter = 0;
                 ReconnectInTime();
-
-                ConnectionHandler?.Invoke(false);
             }
             return;
         }
 
         if (PingCounter >= 5.0f && Twitch.Available == 0)
         {
-            ConnectionHandler?.Invoke(true);
-
             Writer.WriteLine("PING" + URL);
             Writer.Flush();
 
@@ -238,7 +234,7 @@ public class ConnectOnTwitch : MonoBehaviour
             {
                 if (TwitchStatusVariable == TwitchStatus.TryConnect)
                 {
-                    ConnectionHandler?.Invoke(true);
+                    //ConnectionHandler?.Invoke(true);
 
                     _twitchMessager.MessageRead = "OK";
 
@@ -246,6 +242,11 @@ public class ConnectOnTwitch : MonoBehaviour
                     _twitchMessager._messagerStatus = MessagerStatus.Connected;
                 }
                 TwitchTagsEvent?.Invoke(messageRead);
+            }
+
+            if (messageRead.ToLower().Contains("join"))
+            {
+                ConnectionHandler?.Invoke(true);
             }
         }
 

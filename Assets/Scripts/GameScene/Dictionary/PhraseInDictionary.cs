@@ -13,15 +13,5 @@ public class PhraseInDictionary : MonoBehaviour
         Debug.Log("nao existe");
         return false;
 
-        //var allPhrases = CheckDictionary.text.ToLower().Split(", ");
-        //foreach (var item in allPhrases)
-        //{
-        //    if (item.Length != phrase.Length)
-        //        continue;
-
-        //    if (item.ToLower() == phrase)
-        //        return true;
-        //}
-        //return false;
     }
 }

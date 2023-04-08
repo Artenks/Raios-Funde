@@ -5,7 +5,7 @@ public class GameOnFirstExecute : MonoBehaviour
 {
     public event Action FirstTimeEventHandler;
 
-    public event Action MusicResetStateEventHandler;
+    public event Action SoundResetStateEventHandler;
 
     public ConfigSave ConfigSave;
     public ResolutionScript ResolutionScript;
@@ -21,7 +21,7 @@ public class GameOnFirstExecute : MonoBehaviour
             SceneInFirstTime.SetActive(true);
             RemoveObjectsOnFirstTime();
 
-            MusicResetStateEventHandler?.Invoke();
+            SoundResetStateEventHandler?.Invoke();
             ResolutionScript.ResolutionOnFirstExecute();
             FirstTimeEventHandler?.Invoke();
         }

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Discord;
 using System;
+using UnityEngine;
 
 public class DiscordController : MonoBehaviour
 {
@@ -27,8 +25,9 @@ public class DiscordController : MonoBehaviour
         activity.Assets.LargeImage = "logo";
         activity.Assets.LargeText = "Raios Funde";
 
-        activityManager.UpdateActivity(activity, (res) => {
-            if(res == Discord.Result.Ok)
+        activityManager.UpdateActivity(activity, (res) =>
+        {
+            if (res == Result.Ok)
             {
                 Debug.Log("Discord conectado");
             }
@@ -37,7 +36,7 @@ public class DiscordController : MonoBehaviour
         //timer
         long ToUnixTime()
         {
-            DateTime date = System.DateTime.UtcNow;
+            DateTime date = DateTime.UtcNow;
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
             return Convert.ToInt64((date - epoch).TotalSeconds);

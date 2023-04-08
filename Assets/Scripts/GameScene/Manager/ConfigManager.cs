@@ -5,6 +5,7 @@ public class ConfigManager : MonoBehaviour
     public ConfigSave ConfigSave;
     public GameOnFirstExecute GameOnFirstExecute;
     public MusicManager MusicManager;
+    public EffectsManager EffectsManager;
     public ResolutionScript ResolutionScript;
 
     void Awake()
@@ -18,6 +19,7 @@ public class ConfigManager : MonoBehaviour
         else
         {
             MusicManager.ConfigurateMusicOnOpen();
+            EffectsManager.ConfigurateEffectOnOpen();
             ResolutionScript.ConfigurateResolutionOpen();
 
             GameOnFirstExecute.FirstExecuteInvoke();

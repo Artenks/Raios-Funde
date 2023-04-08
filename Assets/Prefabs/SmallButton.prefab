@@ -163,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329287270122285756}
   - component: {fileID: 7047709541514708630}
+  - component: {fileID: 5775077650260590836}
   m_Layer: 5
   m_Name: SmallButton
   m_TagString: Untagged
@@ -238,8 +239,33 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5775077650260590836}
+        m_TargetAssemblyTypeName: PlayEffect, Assembly-CSharp
+        m_MethodName: PlayEffectSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
+--- !u!114 &5775077650260590836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383007610856970451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6da8cb3a3a01e43b26774413714441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clip: {fileID: 8300000, guid: 7eba5f4e999f3a24088baafd715a11bf, type: 3}
 --- !u!1 &7471562410896981143
 GameObject:
   m_ObjectHideFlags: 0
