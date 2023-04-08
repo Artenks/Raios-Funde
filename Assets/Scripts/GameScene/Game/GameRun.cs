@@ -17,7 +17,6 @@ public class GameRun : MonoBehaviour
 
     public CreateAnagram CreateAnagram;
 
-    public PhraseInDictionary PhraseInDictionary;
     public CaractereRemove CaractereRemove;
 
     [Serializable]

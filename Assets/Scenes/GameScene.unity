@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &24992427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5110,7 +5110,7 @@ MonoBehaviour:
     totalPhrase: 0
     phraseList: []
     blockedWords: []
-  Dictionary: {fileID: 4900000, guid: 4ba09b0045ef07c4a8a34a5fa2aec841, type: 3}
+  Dictionary: {fileID: 4900000, guid: be4e8981684704a419f19e73b8cd9cb3, type: 3}
   GameManager: {fileID: 984122554}
 --- !u!114 &366621255
 MonoBehaviour:
@@ -14756,7 +14756,6 @@ GameObject:
   - component: {fileID: 787410322}
   - component: {fileID: 787410321}
   - component: {fileID: 787410323}
-  - component: {fileID: 787410324}
   - component: {fileID: 787410325}
   - component: {fileID: 787410326}
   m_Layer: 0
@@ -14810,19 +14809,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Phrase: 
---- !u!114 &787410324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787410320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ffc2c972795ce498bf087ac74538dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CheckDictionary: {fileID: 4900000, guid: 67603c86b40999c4db8c0d3d8ff7cffb, type: 3}
 --- !u!114 &787410325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19342,7 +19328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1128506485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30130,7 +30116,6 @@ MonoBehaviour:
   GameManager: {fileID: 984122554}
   RankInfo: {fileID: 787410325}
   CreateAnagram: {fileID: 1764870316}
-  PhraseInDictionary: {fileID: 787410324}
   CaractereRemove: {fileID: 1078065496}
   DataGame:
     Phrase: 

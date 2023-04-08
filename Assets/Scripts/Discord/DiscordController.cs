@@ -7,11 +7,10 @@ public class DiscordController : MonoBehaviour
     public static Discord.Discord discord;
     public ActivityManager activityManager;
 
-    public Discord.Activity activity;
-    // Start is called before the first frame update
-    void Start()
+    public Activity activity;
+    private void Start()
     {
-        discord = new Discord.Discord(1047329264137154612, (System.UInt64)Discord.CreateFlags.Default);
+        discord = new Discord.Discord(1047329264137154612, (System.UInt64)CreateFlags.Default);
         activityManager = discord.GetActivityManager();
 
         menus();
@@ -19,8 +18,10 @@ public class DiscordController : MonoBehaviour
 
     void menus()
     {
-        activity.State = "Sofrendo em Raios Funde";
         activity.Timestamps.Start = ToUnixTime();
+
+        activity.Details = "Sofrendo em Raios Funde";
+        activity.State = "Na tentativa de sobreviver ao maior terror de todos.";
 
         activity.Assets.LargeImage = "logo";
         activity.Assets.LargeText = "Raios Funde";
@@ -29,7 +30,7 @@ public class DiscordController : MonoBehaviour
         {
             if (res == Result.Ok)
             {
-                Debug.Log("Discord conectado");
+                Debug.Log("Discord: conectado");
             }
         });
 
@@ -43,9 +44,13 @@ public class DiscordController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         discord.RunCallbacks();
+    }
+
+    private void OnDisable()
+    {
+        discord.Dispose();
     }
 }

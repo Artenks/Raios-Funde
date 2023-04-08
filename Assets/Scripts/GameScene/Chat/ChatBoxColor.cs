@@ -21,7 +21,7 @@ public class ChatBoxColor : MonoBehaviour
 
         if (_phrase.ToLower() == userMessage.ToLower())
         {
-            BoxImage.color = new Color32(167, 255, 0, 255);
+            BoxImage.color = new Color32(255, 216, 0, 255);
             //Debug.Log("palavra certa");
         }
         else
