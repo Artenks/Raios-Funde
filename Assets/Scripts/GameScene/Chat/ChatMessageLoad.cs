@@ -13,7 +13,9 @@ public class ChatMessageLoad : MonoBehaviour
     public ChatBoxColor ChatBoxColor;
     public CaractereRemove CaractereRemove;
 
+    public TwitchChat TwitchChat;
     public GameObject Badges;
+
 
     private TwitchTags _twitchTags;
 
@@ -23,16 +25,24 @@ public class ChatMessageLoad : MonoBehaviour
         TakeAPortrait = true;
 
         _twitchTags = GameObject.FindGameObjectWithTag("Connection").GetComponent<TwitchTags>();
+        TwitchChat = FindObjectOfType<TwitchChat>();
 
-        UserText.color = HexColorToRGB(_twitchTags.Tags.Color);
-        UserText.text = _twitchTags.Tags.DisplayName + ":";
-        MessageText.text = _twitchTags.Tags.Message;
+        UserText.color = HexColorToRGB(TwitchChat.RecentUserInfo.Color);
+        UserText.text = TwitchChat.RecentUserInfo.DisplayName + ":";
+        MessageText.text = TwitchChat.RecentUserInfo.Message;
         MessageText.ignoreVisibility = true;
+
+        //UserText.text = TwitchChat.UsersInfo[TwitchChat.Index].DisplayName + ":";
+        //MessageText.text = TwitchChat.UsersInfo[TwitchChat.Index].Message;
+        //MessageText.ignoreVisibility = true;
 
         UserHaveBadges();
         ChoiceUserPortrait();
 
-        ChatBoxColor.ChangeBoxColor(CaractereRemove.RemoveDiacritics(_twitchTags.Tags.Message));
+        ChatBoxColor.ChangeBoxColor(CaractereRemove.RemoveDiacritics(TwitchChat.RecentUserInfo.Message));
+
+        TwitchChat.UsersInfo.Remove(TwitchChat.UsersInfo[0]);
+        TwitchChat.SendNewChatMessage = true;
     }
 
     private Color HexColorToRGB(string hex)
@@ -83,7 +93,7 @@ public class ChatMessageLoad : MonoBehaviour
 
         else if (_twitchTags.Tags.Broadcaster)
         {
-            if (_twitchTags.Tags.DisplayName == "cellbit")
+            if (_twitchTags.Tags.DisplayName.ToLower() == "cellbit")
                 PortraitInvoke("BroadcasterC");
             else
                 PortraitInvoke("Broadcaster");

@@ -11,10 +11,15 @@ public class FirstTimeOpened : MonoBehaviour
     private bool IsStoping;
     private void Awake()
     {
+        if (PlayerPrefs.HasKey("FirstTime"))
+        {
+            PlayerPrefs.DeleteKey("FirstTime");
+        }
+
         _initialMusic = GameObject.FindGameObjectWithTag("InitialMusic");
         if (Animator == null || PaperContent == null)
         {
-            if (PlayerPrefs.GetInt("FirstTime") == 0)
+            if (PlayerPrefs.GetInt("FirstTimeInGame") == 0)
                 SetValueTrigger();
             else
             {
@@ -25,7 +30,7 @@ public class FirstTimeOpened : MonoBehaviour
 
         try
         {
-            if (PlayerPrefs.GetInt("FirstTime") == 1)
+            if (PlayerPrefs.GetInt("FirstTimeInGame") == 1)
             {
                 PaperContent.gameObject.SetActive(false);
                 Animator.SetTrigger("StartMove");
@@ -34,7 +39,7 @@ public class FirstTimeOpened : MonoBehaviour
         }
         catch
         {
-            PlayerPrefs.SetInt("FirstTime", 0);
+            PlayerPrefs.SetInt("FirstTimeInGame", 0);
         }
     }
 
@@ -64,7 +69,7 @@ public class FirstTimeOpened : MonoBehaviour
 
     public void SetValueTrigger()
     {
-        PlayerPrefs.SetInt("FirstTime", 1);
+        PlayerPrefs.SetInt("FirstTimeInGame", 1);
     }
 
     public void StopInitialMusic()

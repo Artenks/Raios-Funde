@@ -12,7 +12,7 @@ public class ConfigManager : MonoBehaviour
     {
         ConfigSave.Load();
 
-        if (!ConfigSave.Info.noIsFirstTime)
+        if (!ConfigSave.Info.noIsFirstTimePlaying)
         {
             GameOnFirstExecute.FirstExecuteInvoke();
         }

@@ -1,6 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Net.Sockets;
+﻿using Lexone.UnityTwitchChat;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,104 +7,62 @@ using UnityEngine.Events;
 [Serializable]
 public enum TwitchStatus
 {
-    TryConnect,
     Connected,
     Disconnected,
 }
 
-[RequireComponent(typeof(ConnectTwitchMessager))]
 public class ConnectOnTwitch : MonoBehaviour
 {
+    public IRC TwitchIRC;
+
     public TakeMessage TakeMessage;
 
-    public event Action<bool> InputChangeHandler;
+    public event Action InputChangeHandler;
     public event Action<bool> ConnectionHandler;
+    public event Action ChatListEventHandler;
 
-    public UnityEvent<string> TwitchTagsEvent;
+    public UnityEvent<Chatter> TwitchTagsEvent;
 
     public TMP_InputField UserInput;
-    public TMP_InputField OAuthInput;
 
     public TwitchStatus TwitchStatusVariable;
 
     private EmptyToNull _emptyToNull;
-    private ConnectTwitchMessager _twitchMessager;
 
-    private TcpClient Twitch;
-    private StreamReader Reader;
-    private StreamWriter Writer;
-
-    private const string URL = "irc.chat.twitch.tv";
-    private const int PORT = 6667;
-
-    private string Channel = null;
     private string User = null;
-    private string OAuth = null;
 
     private float PingCounter;
-
-    private float _timeToReconnect = 1.0f;
-    private float _realTime = 0;
-
     private TwitchInfo _twitchInfo;
 
-    private void TwitchTryConnect(bool noTakeMessage)
+    public void TwitchDisconnect()
     {
-        TwitchStatusVariable = TwitchStatus.TryConnect;
-        StartImediateTwitch();
-        _twitchMessager.TakeAMessage(User, OAuth, noTakeMessage);
-    }
-    private void TwitchReconnect()
-    {
-        TwitchTryConnect(true);
-    }
-    private void TwitchDisconnect()
-    {
+        TwitchIRC.LeaveChannel(TwitchIRC.channel);
+        TwitchIRC.Disconnect();
         TwitchStatusVariable = TwitchStatus.Disconnected;
         ConnectionHandler?.Invoke(false);
-
-        _twitchMessager.MessagerDisconnect();
-        if (Twitch != null)
-        {
-            Twitch.Close();
-            Reader.Close();
-            Writer.Close();
-
-            Twitch = null;
-            Reader = null;
-            Writer = null;
-        }
     }
-
-    private void ReconnectInTime()
+    private void StartImediateTwitch()
     {
-        if (_realTime >= _timeToReconnect)
+        if (User == null)
+            return;
+
+        ChatListEventHandler?.Invoke();
+
+        //TwitchIRC.channel = User;
+        if (TwitchStatusVariable == TwitchStatus.Disconnected)
         {
-            TwitchReconnect();
+            TwitchIRC.channel = User;
+            TwitchIRC.Connect();
         }
         else
         {
-            _realTime += Time.deltaTime;
+            TwitchIRC.LeaveChannel(TwitchIRC.channel);
+            TwitchIRC.JoinChannel(User);
         }
-    }
-
-    private void StartImediateTwitch()
-    {
-        Twitch = new TcpClient(URL, PORT);
-        Reader = new StreamReader(Twitch.GetStream());
-        Writer = new StreamWriter(Twitch.GetStream());
-
-        Writer.WriteLine("PASS " + OAuth);
-        Writer.WriteLine("NICK " + User);
-        Writer.WriteLine("USER " + User + " 8 *:" + User);
-        Writer.WriteLine("JOIN #" + Channel);
-        Writer.WriteLine("CAP REQ :twitch.tv/commands twitch.tv/tags");
-        Writer.WriteLine("PING" + URL);
-        Writer.Flush();
 
     }
 
-    private void SubmitInputUser(string msg)
+    public void SubmitInputUser(string msg)
     {
         if (msg.Contains("\n") || msg.Contains("\r"))
             return;
@@ -114,52 +71,16 @@ public class ConnectOnTwitch : MonoBehaviour
 
         if (msgNoSpace != User)
         {
-            InputChangeHandler?.Invoke(true);
+            InputChangeHandler?.Invoke();
 
             _twitchInfo.SaveAInfo(true, msgNoSpace);
         }
-        else if (msgNoSpace == User && TwitchStatusVariable == TwitchStatus.Connected)
-        {
-            InputChangeHandler?.Invoke(false);
-        }
 
         User = msgNoSpace;
-        Channel = User;
 
-        if (User != null && OAuth != null)
+        if (User != null)
         {
-            TwitchReconnect();
-        }
-        else
-        {
-            TwitchDisconnect();
-        }
-    }
-    private void SubmitInputOAuth(string msg)
-    {
-        if (msg.Contains("\n") || msg.Contains("\r"))
-            return;
-
-        var msgNoSpace = _emptyToNull.RemoveSpace(msg);
-
-        if (msgNoSpace != OAuth)
-        {
-            InputChangeHandler?.Invoke(true);
-
-            _twitchInfo.SaveAInfo(false, msgNoSpace);
-        }
-        else if (msgNoSpace == OAuth && TwitchStatusVariable == TwitchStatus.Connected)
-        {
-            InputChangeHandler?.Invoke(false);
-        }
-
-
-        OAuth = msgNoSpace;
-
-        if (User != null && OAuth != null)
-        {
-            TwitchReconnect();
-
+            StartImediateTwitch();
         }
         else
         {
@@ -169,98 +90,69 @@ public class ConnectOnTwitch : MonoBehaviour
 
     private void Awake()
     {
-        _twitchMessager = GetComponent<ConnectTwitchMessager>();
-        _twitchInfo = GameObject.Find("Informations").GetComponent<TwitchInfo>();
+        TwitchStatusVariable = TwitchStatus.Disconnected;
 
-        TwitchReconnect();
+        TwitchIRC.OnConnectionAlert += TwitchIRC_OnConnectionAlert;
+        TwitchIRC.OnChatMessage += TwitchIRC_OnChatMessage;
+
+        _twitchInfo = GameObject.Find("Informations").GetComponent<TwitchInfo>();
+    }
+
+    private void TwitchIRC_OnConnectionAlert(IRCReply alert)
+    {
+        switch (alert)
+        {
+            case IRCReply.BAD_LOGIN:
+            case IRCReply.NO_CONNECTION:
+            case IRCReply.MISSING_LOGIN_INFO:
+            default:
+                TwitchStatusVariable = TwitchStatus.Disconnected;
+                ConnectionHandler?.Invoke(false);
+                break;
+            case IRCReply.JOINED_CHANNEL:
+                TwitchStatusVariable = TwitchStatus.Connected;
+                ConnectionHandler?.Invoke(true);
+                break;
+        }
+    }
+
+    private void TwitchIRC_OnChatMessage(Chatter chatter)
+    {
+        TwitchTagsEvent?.Invoke(chatter);
     }
 
     private void Start()
     {
         _emptyToNull = new EmptyToNull();
-
+        UserInput.onSubmit.AddListener(SubmitInputUser);
         _twitchInfo.LoginEventHandler += _twitchInfo_LoginEventHandler;
 
-        UserInput.onSubmit.AddListener(SubmitInputUser);
-        OAuthInput.onSubmit.AddListener(SubmitInputOAuth);
-
+        StartImediateTwitch();
     }
 
     private void _twitchInfo_LoginEventHandler()
     {
         User = _emptyToNull.RemoveSpace(_twitchInfo.ContentJson.user);
-        Channel = User;
-        OAuth = _emptyToNull.RemoveSpace(_twitchInfo.ContentJson.oauth);
 
-        if (User != null || OAuth != null)
+        if (User != null)
         {
             UserInput.text = User;
-            OAuthInput.text = OAuth;
 
-            TwitchTryConnect(false);
+            StartImediateTwitch();
         }
     }
 
     private void Update()
     {
-        if (Twitch == null || !Twitch.Connected)
-        {
-            if (User != null && OAuth != null)
-            {
-                PingCounter = 0;
-                ReconnectInTime();
-            }
-            return;
-        }
 
-        if (PingCounter >= 5.0f && Twitch.Available == 0)
+        if (PingCounter >= 3.0f && TwitchStatusVariable == TwitchStatus.Disconnected)
         {
-            Writer.WriteLine("PING" + URL);
-            Writer.Flush();
-
+            StartImediateTwitch();
             PingCounter = 0;
         }
         else
         {
             PingCounter += Time.deltaTime;
-        }
-
-        if (Twitch.Available > 0)
-        {
-            var messageRead = Reader.ReadLine();
-            messageRead = messageRead.Replace("\U000e0000", "");
-
-            if (messageRead.Contains("PRIVMSG"))
-            {
-                if (TwitchStatusVariable == TwitchStatus.TryConnect)
-                {
-                    //ConnectionHandler?.Invoke(true);
-
-                    _twitchMessager.MessageRead = "OK";
-
-                    TwitchStatusVariable = TwitchStatus.Connected;
-                    _twitchMessager._messagerStatus = MessagerStatus.Connected;
-                }
-                TwitchTagsEvent?.Invoke(messageRead);
-            }
-
-            if (messageRead.ToLower().Contains("join"))
-            {
-                ConnectionHandler?.Invoke(true);
-            }
-        }
-
-
-        if (_twitchMessager.MessageRead.Contains("CHECK") && TwitchStatusVariable == TwitchStatus.TryConnect)
-        {
-            _realTime = 0;
-
-            TwitchStatusVariable = TwitchStatus.Connected;
-            _twitchMessager._messagerStatus = MessagerStatus.Connected;
-
-            ConnectionHandler?.Invoke(true);
-
-            _twitchMessager.MessageRead = "OK";
         }
 
     }

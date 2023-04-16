@@ -449,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5482144073101375120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1292,6 +1292,7 @@ MonoBehaviour:
   MessageText: {fileID: 7934138790387294731}
   ChatBoxColor: {fileID: 3509630022719874155}
   CaractereRemove: {fileID: 5404392848321816190}
+  TwitchChat: {fileID: 0}
   Badges: {fileID: 4300252443790149950}
   TakeAPortrait: 0
 --- !u!114 &2197203649971129925
@@ -1334,6 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CaractereRemove: {fileID: 5404392848321816190}
+  CreateAnagram: {fileID: 0}
 --- !u!114 &5404392848321816190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,8 +1383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 441.88, y: -54.387}
-  m_SizeDelta: {x: 752.23, y: 39.468}
+  m_AnchoredPosition: {x: 432.4354, y: -54.387}
+  m_SizeDelta: {x: 733.3408, y: 39.468}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7934138790387294732
 CanvasRenderer:

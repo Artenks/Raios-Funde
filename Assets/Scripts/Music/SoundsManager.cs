@@ -120,8 +120,6 @@ public class SoundsManager : MonoBehaviour
         }
 
     }
-
-
     public void Stop(bool fade, float endFadeDuration)
     {
         StopAllCoroutines();

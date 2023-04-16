@@ -12,7 +12,6 @@ public class TwitchInfo : MonoBehaviour
     {
         public bool isModified;
         public string user;
-        public string oauth;
     }
     [SerializeField]
     public Info ContentJson;
@@ -24,10 +23,6 @@ public class TwitchInfo : MonoBehaviour
         if (isUser)
         {
             ContentJson.user = msg;
-        }
-        else
-        {
-            ContentJson.oauth = msg;
         }
 
         if (!ContentJson.isModified)
@@ -50,7 +45,6 @@ public class TwitchInfo : MonoBehaviour
 
         ContentJson.isModified = contentJson.isModified;
         ContentJson.user = contentJson.user;
-        ContentJson.oauth = contentJson.oauth;
 
     }
 

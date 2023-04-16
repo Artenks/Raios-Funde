@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class GameOnFirstExecute : MonoBehaviour
 {
-    public event Action FirstTimeEventHandler;
-
     public event Action SoundResetStateEventHandler;
 
     public ConfigSave ConfigSave;
@@ -16,14 +14,13 @@ public class GameOnFirstExecute : MonoBehaviour
 
     public void FirstExecuteInvoke()
     {
-        if (ConfigSave.Info.noIsFirstTime == false)
+        if (ConfigSave.Info.noIsFirstTimePlaying == false)
         {
             SceneInFirstTime.SetActive(true);
             RemoveObjectsOnFirstTime();
 
             SoundResetStateEventHandler?.Invoke();
             ResolutionScript.ResolutionOnFirstExecute();
-            FirstTimeEventHandler?.Invoke();
         }
         else
         {

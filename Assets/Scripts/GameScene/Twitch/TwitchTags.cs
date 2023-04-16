@@ -1,3 +1,4 @@
+using Lexone.UnityTwitchChat;
 using System;
 using UnityEngine;
 
@@ -36,28 +37,24 @@ public class TwitchTags : MonoBehaviour
     [SerializeField]
     private PassValues _passValues;
 
-    public void TwitchTagsEvent(string badgeInfo)
+    public void TwitchTagsEvent(Chatter chatter)
     {
-        if (badgeInfo == "")
+        if (chatter.message == "")
             return;
 
         Tags = new TagsData();
 
-        Tags.Badges = TakeATag(badgeInfo, "badges=");
-        if (Tags.Badges.Contains("bot"))
-            return;
-
-        Tags.DisplayName = TakeATag(badgeInfo, "display-name=").ToLower();
-        Tags.Message = TakeAMessage(badgeInfo);
-        Tags.Color = TakeATag(badgeInfo, "color=");
+        Tags.DisplayName = chatter.tags.displayName;
+        Tags.Message = chatter.message;
+        Tags.Color = chatter.tags.colorHex;
         if (Tags.Color == "")
             Tags.Color = "#FFFFFF";
 
-        Tags.Subscriber = int.Parse(TakeATag(badgeInfo, "subscriber=")) == 1 ? true : false;
-        Tags.Pleb = int.Parse(TakeATag(badgeInfo, "subscriber=")) == 0 ? true : false;
-        Tags.Mod = int.Parse(TakeATag(badgeInfo, "mod=")) == 1 ? true : false;
-        Tags.Vip = Tags.Badges.Contains("vip/1") ? true : false;
-        Tags.Broadcaster = Tags.Badges.Contains("broadcaster/1") ? true : false;
+        Tags.Subscriber = chatter.HasBadge("subscriber");
+        Tags.Pleb = chatter.HasBadge("subscriber") == true ? false : true;
+        Tags.Mod = chatter.HasBadge("moderator");
+        Tags.Vip = chatter.HasBadge("vip");
+        Tags.Broadcaster = chatter.HasBadge("broadcaster");
 
         if (_passValues.Everything)
         {
@@ -88,29 +85,6 @@ public class TwitchTags : MonoBehaviour
         {
             TakeMessage.SendAMessage(Tags.DisplayName, Tags.Message);
         }
-    }
-    private string TakeATag(string badgeInfo, string target)
-    {
-        var textSplit = badgeInfo.Replace("@badge-info=", "").Split(';');
-        var output = "";
-
-        foreach (var line in textSplit)
-        {
-            if (line.Contains(target))
-            {
-                output = line.Substring(line.IndexOf('=') + 1);
-            }
-        }
-        return output;
-    }
-
-    private string TakeAMessage(string fullMessage)
-    {
-        var msgIndex = fullMessage.IndexOf("PRIVMSG");
-        var targetIndex = fullMessage.IndexOf(":", msgIndex);
-        var message = fullMessage.Substring(targetIndex + 1);
-
-        return message;
     }
 
     private void Awake()

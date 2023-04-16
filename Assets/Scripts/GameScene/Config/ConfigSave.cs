@@ -14,7 +14,7 @@ public class ConfigSave : MonoBehaviour
     [Serializable]
     public struct ConfigInfo
     {
-        public bool noIsFirstTime;
+        public bool noIsFirstTimePlaying;
 
         [Serializable]
         public struct Screen
@@ -57,12 +57,11 @@ public class ConfigSave : MonoBehaviour
         ResolutionScript.ResolutionEventHandler += ResolutionScript_ResolutionEventHandler;
         MusicManager.MusicEventHandler += MusicManager_MusicEventHandler;
         EffectsManager.EffectsEventHandler += EffectsManager_EffectsEventHandler;
-        GameOnFirstExecute.FirstTimeEventHandler += GameOnFirstExecute_FirstTimeEventHandler;
     }
 
-    private void GameOnFirstExecute_FirstTimeEventHandler()
+    public void ChangeFirstTime()
     {
-        Info.noIsFirstTime = true;
+        Info.noIsFirstTimePlaying = true;
         Save();
     }
 
@@ -106,7 +105,7 @@ public class ConfigSave : MonoBehaviour
 
         var content = JsonUtility.FromJson<ConfigInfo>(contentPath);
 
-        Info.noIsFirstTime = content.noIsFirstTime;
+        Info.noIsFirstTimePlaying = content.noIsFirstTimePlaying;
 
         Info.screen.noIsFullscreen = content.screen.noIsFullscreen;
         Info.screen.frameRate = content.screen.frameRate;
