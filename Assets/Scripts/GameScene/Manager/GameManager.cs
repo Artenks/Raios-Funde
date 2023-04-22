@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     }
     public GameModesBool Modes;
 
-    private TimeForUpdate _timeForUpdate;
+    private TimeInGame _timeInGame;
 
     public string TakeTogetherPhrase()
     {
@@ -86,9 +86,9 @@ public class GameManager : MonoBehaviour
 
     private void ResetCounter()
     {
-        _timeForUpdate.Data.TotalTimer = 0;
-        _timeForUpdate.Data.NowTimer = 0;
-        _timeForUpdate.Data.RunTimer = false;
+        _timeInGame.Data.TotalTimer = 0;
+        _timeInGame.Data.NowTimer = 0;
+        _timeInGame.Data.RunTimer = false;
     }
 
     public void TogetherGame_DisableEventHandler()
@@ -118,8 +118,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Data.State = GameState.Coding;
-        _timeForUpdate = GetComponent<TimeForUpdate>();
+        Data.State = GameState.Restart;
+        _timeInGame = GetComponentInChildren<TimeInGame>(true);
 
         SimpleMode.DisableEventHandler += TogetherGame_DisableEventHandler;
     }
@@ -138,10 +138,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Playing:
+
                 if (Modes.TimerOn)
                 {
-                    var timer = _timeForUpdate.StartTheCount(Data.Timer);
-                    TimerEventHandler?.Invoke(_timeForUpdate.Data.NowTimer);
+                    var timer = _timeInGame.StartTheCount(Data.Timer);
+                    TimerEventHandler?.Invoke(_timeInGame.Data.NowTimer);
 
                     if (timer)
                     {

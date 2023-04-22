@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 163
+  controlID: 149
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 33
+  controlID: 267
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 56
+  controlID: 44
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -672,9 +672,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 533.0736, y: 87.04051, z: 1.412733}
+    m_Target: {x: 180.82744, y: 176.1085, z: 0.40722033}
     speed: 2
-    m_Value: {x: 533.0736, y: 87.04051, z: 1.412733}
+    m_Value: {x: 180.82744, y: 176.1085, z: 0.40722033}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -725,9 +725,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 100.74938
+    m_Target: 184.38057
     speed: 2
-    m_Value: 100.74938
+    m_Value: 184.38057
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1243,9 +1243,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: fdc66962ddd8e03429bd7419c4ed22a6, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: f7a090b024521d14788b7f96f5918515, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -638405813097383236, guid: fdc66962ddd8e03429bd7419c4ed22a6, type: 2}
+  - m_Target: {fileID: 5719696785735033010, guid: f7a090b024521d14788b7f96f5918515, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1464,7 +1464,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 46100
+  m_LastSelectedObjectID: 117052
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1498,21 +1498,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 36d4f2ff88d4f2ffced9f2fff6d9f2fffed9f2ff20dfffff52e0ffffa0e0ffff6ce6ffff9ee6ffffa2e6ffff28fbfffff4ffffff92b1000054b2000040b4000084b600008cb7000036b90000d4b90000
+      m_ExpandedIDs: d8e2ebff26e3ebff0ae7ebff1ae7ebff1ee7ebff8ae8ebffd8e8ebff14eeebff3ceeebff44eeebffb669edff046aedff406fedff686fedff706fedfff82afaff4a2bfaff8630faffae30faffb630faffdef7ffffd6f9ffffdcf9ffff28fbffff82640000446500001a670000306700009a6800003a690000426900007c6a0000e06b0000eac30100e2c401004ac7010070c70100e2c70100cec80100d6c801003cc9010006ca010016ca010034cb0100c6cb0100f0cd0100668402005e8502005e86020060870200c6870200ec870200b8890200d4890200de8902000c8a02007a8a0200d88a0200428c0200568c02006c8e0200d48e0200468f0200dc8f0200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Text Area
+        m_OriginalName: Text Area
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 166998
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -1619,22 +1619,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/GameScene/Manager
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/GameScene/Manager
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\artenks\Documents\Eu\Dev\Unity\Local\Raios-Funde
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4e670000
-    m_LastClickedID: 26446
-    m_ExpandedIDs: 000000008a6600008c6600008e66000090660000946600009666000000ca9a3b
+    m_SelectedIDs: c4730000
+    m_LastClickedID: 29636
+    m_ExpandedIDs: 00000000887300008a7300008c7300008e730000907300009273000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1662,7 +1662,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008a6600008c6600008e66000090660000926600009466000096660000
+    m_ExpandedIDs: 00000000887300008a7300008c7300008e7300009073000092730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1738,9 +1738,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1150
+    x: 1034
     y: 73
-    width: 364
+    width: 480
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:

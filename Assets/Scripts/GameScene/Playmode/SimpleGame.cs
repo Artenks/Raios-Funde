@@ -8,6 +8,8 @@ public class SimpleGame : MonoBehaviour
     public GameManager GameManager;
     public GameRun GameRunning;
 
+    public TimeInGame TimeInGame;
+
     [Serializable]
     public struct UserData
     {
@@ -63,5 +65,11 @@ public class SimpleGame : MonoBehaviour
     private void OnEnable()
     {
         DisableEventHandler?.Invoke();
+    }
+    private void OnDisable()
+    {
+        if (GameManager.Data.State == GameManager.GameState.Playing)
+            GameManager.Data.State = GameManager.GameState.Coding;
+
     }
 }
